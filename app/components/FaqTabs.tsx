@@ -116,14 +116,14 @@ const TABS: Tab[] = [
   },
 ];
 
-export default function FaqTabs() {
+export default function FaqTabs({ media }: { media?: ReactNode }) {
   const [tab, setTab] = useState(0);
   const [open, setOpen] = useState<number | null>(0);
   const active = TABS[tab];
 
   return (
     <>
-      <div role="tablist" aria-label="FAQ categories" className="flex flex-wrap gap-x-5 gap-y-3">
+      <div role="tablist" aria-label="FAQ categories" className="-mr-5 flex gap-2.5 overflow-x-auto [scrollbar-width:none] sm:mr-0 sm:flex-wrap sm:gap-x-5 sm:gap-y-3 sm:overflow-visible">
         {TABS.map((t, i) => {
           const on = i === tab;
           return (
@@ -137,36 +137,38 @@ export default function FaqTabs() {
                 setTab(i);
                 setOpen(0);
               }}
-              className={`flex items-center gap-2 rounded-full px-[18px] py-[15px] text-left text-sm leading-[19px] ${
-                on ? "bg-[#c4161c] font-bold text-[#f5f5f5]" : "bg-[#ebebeb] font-medium text-[#6b6b6b]"
+              className={`flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-2.5 py-[9px] text-left text-[10px] leading-normal sm:whitespace-normal sm:px-[18px] sm:py-[15px] sm:text-sm sm:leading-[19px] ${
+                on ? "bg-[#c4161c] font-bold text-[#f5f5f5]" : "bg-[#ebebeb] font-medium text-[#929292] sm:text-[#6b6b6b]"
               }`}
             >
-              <span className="shrink-0">{t.icon}</span>
+              <span className="shrink-0 [&_svg]:size-3.5 sm:[&_svg]:size-6">{t.icon}</span>
               {t.label}
             </button>
           );
         })}
       </div>
 
-      <div id="faq-panel" role="tabpanel" aria-labelledby={`faq-tab-${active.id}`} className="mt-[54px] max-w-[911.5px]">
+      {media && <div className="mt-5 lg:hidden">{media}</div>}
+
+      <div id="faq-panel" role="tabpanel" aria-labelledby={`faq-tab-${active.id}`} className="mt-6 max-w-[911.5px] lg:mt-[54px]">
         {active.faqs.map((f, i) => {
           const isOpen = open === i;
           return (
-            <div key={f.q} className="border-b-[1.333px] border-[#e2e2e2] pb-[33px] pt-8 first:pt-0">
+            <div key={f.q} className="border-b border-[#e2e2e2] pb-3 pt-3 first:pt-0 sm:border-b-[1.333px] sm:pb-[33px] sm:pt-8">
               <h3>
                 <button
                   aria-expanded={isOpen}
                   aria-controls={`faq-a-${i}`}
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className={`flex w-full items-start justify-between gap-6 text-left text-lg font-bold leading-[29.867px] sm:text-[21.333px] ${
+                  className={`flex w-full items-center justify-between gap-4 text-left text-base font-medium leading-6 sm:items-start sm:gap-6 sm:text-[21.333px] sm:font-bold sm:leading-[29.867px] ${
                     isOpen ? "text-[#c4161c]" : "text-[#080808]"
                   }`}
                 >
                   {f.q}
                   <span
                     aria-hidden="true"
-                    className={`flex size-[37.333px] shrink-0 items-center justify-center rounded-full text-[21.333px] font-normal transition-transform duration-200 ${
-                      isOpen ? "rotate-45 bg-[#c4161c] text-[#f5f5f5]" : "bg-[#f0f0f0] text-[#767676]"
+                    className={`flex size-6 shrink-0 items-center justify-center rounded-full text-[21.333px] font-normal leading-none transition-transform sm:size-[37.333px] duration-200 ${
+                      isOpen ? "rotate-45 bg-[#c4161c] text-[#f5f5f5]" : "bg-[#f0f0f0] text-[#9a9a9a] sm:text-[#767676]"
                     }`}
                   >
                     +
@@ -179,7 +181,7 @@ export default function FaqTabs() {
                 className={`grid transition-[grid-template-rows] duration-200 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
               >
                 <div className="overflow-hidden">
-                  <p className="pt-[18.667px] text-base font-medium leading-[30.8px] text-[#5a5a5a] sm:text-[18.667px]">{f.a}</p>
+                  <p className="pt-2.5 text-sm font-medium leading-5 text-[#5a5a5a] sm:pt-[18.667px] sm:text-[18.667px] sm:leading-[30.8px]">{f.a}</p>
                 </div>
               </div>
             </div>

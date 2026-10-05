@@ -22,7 +22,7 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#060606] text-white xl:min-h-[1017px]">
+    <section id="top" className="relative isolate overflow-hidden bg-[#060606] text-white xl:min-h-[1017px]">
       {/* Figma: 1697x1129 image pinned right (88.4% of 1920), 48px cropped at top */}
       {/* Mobile/tablet background */}
       <div className="absolute inset-0 -z-20 lg:hidden">
@@ -42,7 +42,21 @@ export default function Hero() {
       </div>
       <div className="absolute inset-0 -z-10 bg-[#0f0f0f]/55 lg:bg-transparent lg:bg-[linear-gradient(to_right,#060606_25%,rgba(6,6,6,0.8)_43%,rgba(6,6,6,0)_88%)]" />
 
-      <header className="mx-auto flex h-20 max-w-[1920px] items-center justify-between px-5 md:px-10 xl:px-20">
+      {/* Mobile nav: fixed bar with logo and quote button */}
+      <nav
+        aria-label="Primary"
+        className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-white/10 bg-[#060606]/90 px-5 backdrop-blur-md md:hidden"
+      >
+        <a href="#top" aria-label="Mekark home">
+          <Image src="/hero/mekark-logo.webp" alt="Mekark" width={132} height={46} priority className="h-auto w-[88px]" />
+        </a>
+        <a href="#quote" className="rounded-lg bg-[#c4161c] px-3.5 py-2 text-xs font-semibold leading-[18px] text-[#f5f5f5] shadow-[0_6px_14px_rgba(196,22,28,0.3)]">
+          Get Free Quote
+        </a>
+      </nav>
+      <div aria-hidden="true" className="h-14 md:hidden" />
+
+      <header className="mx-auto hidden h-20 max-w-[1920px] items-center justify-between px-5 md:flex md:px-10 xl:px-20">
         <Image src="/hero/mekark-logo.webp" alt="Mekark" width={132} height={46} priority className="h-auto w-[104px] md:w-[132px]" />
         <a href="#quote" className="rounded-lg bg-[#c4161c] px-5 py-2.5 text-sm leading-[22px] font-semibold text-[#f5f5f5] shadow-[0_9px_18px_rgba(196,22,28,0.3)] md:px-6 md:text-base md:leading-[22px]">
           Get Free Quote
@@ -50,7 +64,7 @@ export default function Hero() {
       </header>
 
       <div className="mx-auto max-w-[1920px] px-5 md:px-10 xl:px-20">
-      <div className="grid max-w-[1733px] items-center gap-4 pb-12 pt-0 sm:gap-10 sm:pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:py-12 xl:mb-[88px] xl:mt-[9px] xl:min-h-[840px] xl:py-0 min-[1720px]:grid-cols-[879px_660px] min-[1720px]:justify-between">
+      <div className="grid max-w-[1733px] items-center grid-cols-[minmax(0,1fr)] gap-4 pb-12 pt-0 sm:gap-10 sm:pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:py-12 xl:mb-[88px] xl:mt-[9px] xl:min-h-[840px] xl:py-0 min-[1720px]:grid-cols-[879px_660px] min-[1720px]:justify-between">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <div className="relative -mx-5 h-[245px] overflow-hidden px-5 pt-[18px] md:-mx-10 md:px-10 lg:m-0 lg:h-auto lg:overflow-visible lg:p-0">
@@ -60,10 +74,10 @@ export default function Hero() {
                 <div className="absolute inset-x-0 bottom-0 h-[55px] bg-gradient-to-b from-transparent to-[#1e1e1e]/90" />
               </div>
               <h1 className="relative max-w-[879px] text-[28px] font-bold leading-[31px] sm:text-[44px] sm:leading-[1.1] xl:text-[54px] xl:leading-[58px]">
-              One Contract. <span className="text-[#ed1d23]">Your Entire Plant.</span>
-              <br />
-              No Handoffs.
-              </h1>
+                One Contract. <span className="text-[#ed1d23]">Your Entire Plant.</span>{" "}
+                <br className="hidden sm:block" />
+                No Handoffs.
+                </h1>
             </div>
             <p className="max-w-[879px] text-sm leading-[1.4] text-[#f3f3f3] md:text-[20px] md:leading-7 md:text-[#a9a9a9] xl:text-[22px]">
               From concept to commissioning, Inbuilt Infra develops high-performance factory buildings tailored to the operational needs of manufacturers. Every project is executed with engineering precision, single-point accountability, and uncompromising quality.
@@ -112,7 +126,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div id="quote" className="scroll-mt-4 max-sm:px-4 min-[1720px]:mr-[34px]">
+        <div id="quote" className="scroll-mt-16 max-sm:px-4 min-[1720px]:mr-[34px]">
           <LeadForm />
         </div>
 

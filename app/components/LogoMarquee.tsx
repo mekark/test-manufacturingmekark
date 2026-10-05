@@ -24,8 +24,13 @@ export default function LogoMarquee() {
       <p className="mb-4 text-[14px] font-semibold uppercase leading-5 text-[#ed1d23] sm:text-[#fa7783] sm:mb-[31px] sm:text-[14px]">
         Trusted Across India
       </p>
+      <div className="flex flex-wrap gap-x-[18px] gap-y-2 sm:hidden" aria-label={`Trusted by ${CLIENTS.slice(0, 4).join(", ")}`} role="img">
+        {CLIENTS.slice(0, 4).map((name, i) => (
+          <span key={name} aria-hidden="true" className="logo-tile-sm" style={{ backgroundPositionX: `${-i * 63}px` }} />
+        ))}
+      </div>
       <div
-        className="overflow-hidden"
+        className="hidden overflow-hidden sm:block"
         role="img"
         aria-label={`Trusted by ${CLIENTS.join(", ")}`}
       >

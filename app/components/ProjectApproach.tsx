@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 const icon = {
+  className: "size-6 sm:size-10",
   width: 40,
   height: 40,
   viewBox: "0 0 24 24",
@@ -71,34 +72,40 @@ const STEPS: { title: string; text: string; icon: ReactNode }[] = [
 export default function ProjectApproach() {
   return (
     <section className="bg-[#f9f6f7]">
-      <div className="mx-auto max-w-[1920px] px-5 py-12 md:px-10 md:py-16 xl:p-20">
+      <div className="mx-auto max-w-[1920px] px-6 py-8 md:px-10 md:py-16 xl:p-20">
         <div className="max-w-[1015px]">
-          <h2 className="text-[36px] font-bold leading-[1.11] text-[#0f172a] sm:text-[52px] xl:text-[66px] xl:leading-[73.333px]">
+          <h2 className="text-[28px] font-bold leading-[34px] text-[#0f172a] sm:text-[52px] sm:leading-[1.11] xl:text-[66px] xl:leading-[73.333px]">
             Our <span className="text-[#ed1d23]">Project Approach</span>
           </h2>
-          <p className="mt-4 text-base leading-7 text-[#64748b] md:text-[20px] xl:text-[24px] xl:leading-[34px]">
+          <p className="mt-3 text-sm leading-5 text-[#64748b] sm:mt-4 md:text-[20px] md:leading-7 xl:text-[24px] xl:leading-[34px]">
             A manufacturing building moves through five stages before it&apos;s yours to operate. We run all five under one project office.
           </p>
         </div>
 
-        <ol className="mt-[50px] grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <ol className="mt-[29px] grid max-sm:pr-10 gap-x-10 gap-y-6 sm:mt-[50px] sm:gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="relative flex flex-col gap-[52px]">
+            <li key={s.title} className="relative flex gap-4 sm:flex-col sm:gap-[52px]">
+              {i < STEPS.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-[-24px] left-[25px] top-[50px] w-px bg-[#e4dfe0] sm:hidden"
+                />
+              )}
               {i < STEPS.length - 1 && (
                 <span
                   aria-hidden="true"
                   className="absolute left-[100px] top-[47.67px] hidden h-px w-[calc(100%-60px)] bg-[#e4dfe0] xl:block"
                 />
               )}
-              <div className="flex h-[92px] w-[100px] items-center justify-center rounded-[18px] border border-[#e4dfe0] bg-white">
+              <div className="relative flex size-[50px] shrink-0 items-center justify-center rounded-lg border border-[#e4dfe0] bg-white sm:h-[92px] sm:w-[100px] sm:rounded-[18px]">
                 {s.icon}
               </div>
-              <div className="flex flex-col gap-3">
-                <span className="text-[26px] font-bold leading-[21.333px] text-[#ed1d23]">
+              <div className="flex min-w-0 flex-col gap-2 sm:gap-3">
+                <span className="text-lg font-bold leading-normal text-[#ff8f92] sm:text-[26px] sm:leading-[21.333px] sm:text-[#ed1d23]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="text-[21px] font-bold leading-6 text-black">{s.title}</h3>
-                <p className="max-w-[270px] text-[18px] leading-[22.667px] text-[#64748b]">{s.text}</p>
+                <h3 className="text-lg font-bold leading-[22px] text-[#0f172a] sm:text-[21px] sm:leading-6 sm:text-black">{s.title}</h3>
+                <p className="text-sm leading-[18px] text-[#64748b] sm:max-w-[270px] sm:text-[18px] sm:leading-[22.667px]">{s.text}</p>
               </div>
             </li>
           ))}

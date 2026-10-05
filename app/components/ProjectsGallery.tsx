@@ -19,44 +19,45 @@ function Photo({ tile, className }: { tile: Tile; className: string }) {
   );
 }
 
-// Below lg the wrappers use `contents`, so the six photos flow in a simple 2-column grid.
+// Below lg the wrappers use `contents`, so the photos flow in a simple 2-column grid.
+// Below sm only four photos show (Figma mobile frame): wide, pair, wide.
 export default function ProjectsGallery() {
   return (
     <section className="bg-[#f9f6f7]">
-      <div className="mx-auto max-w-[1920px] px-5 py-12 md:px-10 xl:px-20 xl:py-[70px]">
-        <div className="flex flex-col gap-[14px]">
-          <div className="flex flex-col gap-[13px] font-bold">
-            <p className="text-base uppercase leading-[21.3px] tracking-[1.6px] text-[#ed1d23]">our work</p>
-            <h2 className="text-[40px] leading-[1.05] text-[#0f172a] sm:text-[52px] xl:text-[66px] xl:leading-[60px]">
+      <div className="mx-auto max-w-[1920px] px-5 py-8 sm:py-12 md:px-10 xl:px-20 xl:py-[70px]">
+        <div className="flex flex-col gap-4 sm:gap-[14px]">
+          <div className="flex flex-col gap-2.5 font-bold sm:gap-[13px]">
+            <p className="text-xs uppercase leading-[18px] tracking-[1.6px] text-[#ed1d23] sm:text-base sm:leading-[21.3px]">our work</p>
+            <h2 className="text-[28px] leading-8 text-[#0f172a] sm:text-[52px] sm:leading-[1.05] xl:text-[66px] xl:leading-[60px]">
               Projects <span className="text-[#ed1d23]">Gallery</span>
             </h2>
           </div>
-          <p className="text-base font-medium leading-7 text-[#64748b] md:text-[20px] xl:text-[24px] xl:leading-9">
+          <p className="text-sm font-medium leading-5 text-[#64748b] sm:text-base sm:leading-7 md:text-[20px] xl:text-[24px] xl:leading-9">
             Completed Manufacturing structures across Tamil Nadu and beyond.
           </p>
         </div>
 
-        <div className="mt-[50px] grid grid-cols-2 gap-3 lg:grid-cols-[569fr_1167fr] lg:gap-6">
+        <div className="mt-6 grid grid-cols-2 gap-x-3 gap-y-4 sm:mt-[50px] sm:gap-y-3 lg:grid-cols-[569fr_1167fr] lg:gap-6">
           <div className="contents lg:flex lg:flex-col lg:gap-5">
-            <Photo tile={T.farm} className="col-span-2 aspect-[4/3] lg:aspect-auto lg:flex-[643]" />
-            <Photo tile={T.campus} className="aspect-[4/3] lg:aspect-auto lg:flex-[305]" />
+            <Photo tile={T.farm} className="col-span-2 h-[220px] sm:aspect-[4/3] sm:h-auto lg:aspect-auto lg:flex-[643]" />
+            <Photo tile={T.campus} className="col-span-2 h-[196px] max-sm:order-1 sm:col-span-1 sm:aspect-[4/3] sm:h-auto lg:aspect-auto lg:flex-[305]" />
           </div>
           <div className="contents lg:flex lg:flex-col lg:gap-5">
             <div className="contents lg:grid lg:aspect-[1167/477] lg:grid-cols-[424fr_719fr] lg:gap-6">
-              <Photo tile={T.roof} className="aspect-[4/3] lg:aspect-auto" />
-              <Photo tile={T.interior} className="aspect-[4/3] lg:aspect-auto" />
+              <Photo tile={T.roof} className="h-[174px] sm:aspect-[4/3] sm:h-auto lg:aspect-auto" />
+              <Photo tile={T.interior} className="h-[174px] sm:aspect-[4/3] sm:h-auto lg:aspect-auto" />
             </div>
             <div className="contents lg:grid lg:aspect-[1167/471] lg:grid-cols-2 lg:gap-6">
-              <Photo tile={T.frame} className="aspect-[4/3] lg:aspect-auto" />
-              <Photo tile={T.yard} className="aspect-[4/3] lg:aspect-auto" />
+              <Photo tile={T.frame} className="hidden aspect-[4/3] sm:block lg:aspect-auto" />
+              <Photo tile={T.yard} className="hidden aspect-[4/3] sm:block lg:aspect-auto" />
             </div>
           </div>
         </div>
 
-        <div className="mt-10 flex justify-center xl:mt-[70px]">
+        <div className="mt-6 flex justify-center sm:mt-10 xl:mt-[70px]">
           <a
             href="#"
-            className="rounded-[8.8px] bg-[#c4161c] px-10 py-4 text-xl font-extrabold text-[#f5f5f5] shadow-[0_9px_18px_rgba(196,22,28,0.3)] xl:px-[50px] xl:py-5 xl:text-[24px]"
+            className="w-full rounded-lg bg-[#c4161c] px-6 py-3.5 text-center text-sm font-semibold sm:w-auto sm:rounded-[8.8px] sm:px-10 sm:py-4 sm:text-xl sm:font-extrabold text-[#f5f5f5] shadow-[0_9px_18px_rgba(196,22,28,0.3)] xl:px-[50px] xl:py-5 xl:text-[24px]"
           >
             View All →
           </a>

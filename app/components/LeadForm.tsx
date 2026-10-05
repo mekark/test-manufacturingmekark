@@ -1,5 +1,5 @@
 const field =
-  "w-full rounded-lg border border-[#e2e2e2] bg-[#f0f0f0] px-4 py-3.5 text-base text-[#080808] placeholder:text-[#757575] md:h-[46px] md:py-0 md:text-[12px] focus:outline-2 focus:outline-offset-2 focus:outline-[#c4161c]";
+  "w-full rounded-lg border border-[#e2e2e2] bg-[#f0f0f0] px-[18px] py-3.5 text-xs text-[#080808] placeholder:text-[#757575] md:h-[46px] md:py-0 md:text-[12px] focus:outline-2 focus:outline-offset-2 focus:outline-[#c4161c]";
 const label = "max-md:sr-only mb-[6.6px] block text-sm leading-[19px] font-bold text-white";
 
 function Field({
@@ -50,7 +50,7 @@ export default function LeadForm() {
           <input id="email" name="email" type="email" autoComplete="email" placeholder="Enter Email Address" className={field} />
         </Field>
         <Field id="industry" text="Industry Type*">
-          <select id="industry" name="industry" required defaultValue="" className={field}>
+          <select id="industry" name="industry" required defaultValue="" className={`${field} select-chevron`}>
             <option value="" disabled>Select your Industry type</option>
             <option>Automotive</option>
             <option>Engineering &amp; Machinery</option>
@@ -63,7 +63,7 @@ export default function LeadForm() {
           </select>
         </Field>
         <Field id="sqft" text="Project Sq. Ft*">
-          <select id="sqft" name="sqft" required defaultValue="" className={field}>
+          <select id="sqft" name="sqft" required defaultValue="" className={`${field} select-chevron`}>
             <option value="" disabled>Select Sq.ft Requirement</option>
             <option>Below 10,000</option>
             <option>10,000 – 25,000</option>
