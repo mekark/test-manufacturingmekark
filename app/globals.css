@@ -1,26 +1,213 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060606;
+  --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Logo strip: one sprite image, GPU-only transform animation. */
+.logo-tile {
+  width: 90px;
+  height: 40px;
+  flex: none;
+  margin-right: 50px;
+  border-radius: 8px;
+  background-image: url("/hero/logos.webp");
+  background-size: 1530px 40px;
+  background-repeat: no-repeat;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* "Why Mekark": at lg+ everything scales from the 1920x865 Figma frame (--u = 1 design px). */
+@media (min-width: 1024px) {
+  .why {
+    --u: min(0.0520833vw, 1px);
+    height: calc(865 * var(--u));
+  }
+  .why-panel {
+    width: calc(916 * var(--u));
+    padding: calc(49.33 * var(--u)) 0 0 calc(85.33 * var(--u));
+  }
+  .why-head {
+    width: calc(706.67 * var(--u));
+  }
+  .why-title {
+    font-size: calc(66 * var(--u));
+    line-height: calc(69.333 * var(--u));
+  }
+  .why-sub {
+    margin-top: calc(22 * var(--u));
+    font-size: calc(21.333 * var(--u));
+    line-height: calc(28 * var(--u));
+  }
+  .why-list {
+    margin: calc(14 * var(--u)) 0 0 calc(41.33 * var(--u));
+    gap: calc(7.5 * var(--u));
+  }
+  .why-row {
+    margin-left: calc(var(--x) * var(--u));
+    width: calc(var(--w) * var(--u));
+    gap: calc(20 * var(--u));
+    padding: calc(12 * var(--u)) 0 calc(13.333 * var(--u));
+    border-bottom-width: calc(1.333 * var(--u));
+    font-size: calc(26 * var(--u));
+    line-height: calc(29.867 * var(--u));
+  }
+  .why-tick {
+    width: calc(36 * var(--u));
+    height: calc(36 * var(--u));
+  }
+}
+
+/* CTA: stacked + fluid below 1440px; at 1440+ everything scales from the 1920px Figma frame (--u = 1 design px). */
+@media (min-width: 1440px) {
+  .cta {
+    --u: min(0.0520833vw, 1px);
+  }
+  .cta-inner {
+    padding: calc(100 * var(--u)) calc(182 * var(--u));
+  }
+  .cta-grid {
+    grid-template-columns: calc(887 * var(--u)) calc(600 * var(--u));
+    gap: calc(69 * var(--u));
+  }
+  .cta-chip {
+    padding: calc(9.33 * var(--u)) calc(20 * var(--u));
+    font-size: calc(16 * var(--u));
+    line-height: calc(26 * var(--u));
+  }
+  .cta-title {
+    margin-top: calc(25 * var(--u));
+    font-size: calc(79.467 * var(--u));
+    line-height: calc(81.6 * var(--u));
+  }
+  .cta-sub {
+    margin-top: calc(25 * var(--u));
+    max-width: calc(837 * var(--u));
+    font-size: calc(24 * var(--u));
+    line-height: calc(37.33 * var(--u));
+  }
+  .cta-points {
+    margin-top: calc(37 * var(--u));
+    column-gap: calc(32 * var(--u));
+    row-gap: calc(18.67 * var(--u));
+    font-size: calc(20 * var(--u));
+  }
+  .cta-points li {
+    gap: calc(16 * var(--u));
+  }
+  .cta-tick {
+    width: calc(37.33 * var(--u));
+    height: calc(37.33 * var(--u));
+    font-size: calc(17.33 * var(--u));
+  }
+  .cta-cards {
+    margin-top: calc(55 * var(--u));
+    max-width: calc(693 * var(--u));
+    gap: calc(21 * var(--u));
+  }
+  .cta-card {
+    height: calc(120 * var(--u));
+    gap: calc(21 * var(--u));
+    padding: 0 calc(27 * var(--u));
+    border-radius: calc(29 * var(--u));
+  }
+  .cta-card-icon {
+    width: calc(64 * var(--u));
+    height: calc(64 * var(--u));
+    border-radius: calc(24 * var(--u));
+  }
+  .cta-card-icon img {
+    width: calc(27 * var(--u));
+    height: auto;
+  }
+  .cta-card-icon img.cta-wa {
+    width: calc(39 * var(--u));
+  }
+  .cta-eyebrow {
+    font-size: calc(16 * var(--u));
+    line-height: calc(21.33 * var(--u));
+  }
+  .cta-card-title {
+    font-size: calc(21.33 * var(--u));
+    line-height: calc(32 * var(--u));
+  }
+  .cta-card-title.cta-wa-title {
+    font-size: calc(26 * var(--u));
+  }
+  .cta-card > img {
+    width: calc(27 * var(--u));
+  }
+  .cta-form {
+    padding: calc(42 * var(--u)) calc(46 * var(--u));
+    border-radius: calc(29 * var(--u));
+  }
+  .cta-form h3 {
+    font-size: calc(21.8 * var(--u));
+  }
+  .cta-form-sub {
+    margin-top: calc(6 * var(--u));
+    font-size: calc(13 * var(--u));
+  }
+  .cta-fields {
+    margin-top: calc(21 * var(--u));
+    column-gap: calc(32 * var(--u));
+    row-gap: calc(12 * var(--u));
+  }
+  .cta-form label {
+    margin-bottom: calc(6 * var(--u));
+    font-size: calc(14 * var(--u));
+  }
+  .cta-form input,
+  .cta-form select,
+  .cta-form textarea {
+    padding: calc(13 * var(--u)) calc(17 * var(--u));
+    border-radius: calc(8 * var(--u));
+    font-size: calc(12 * var(--u));
+  }
+  .cta-submit {
+    margin-top: calc(21 * var(--u));
+    height: calc(58 * var(--u));
+    border-radius: calc(8 * var(--u));
+    font-size: calc(16 * var(--u));
+  }
+  .cta-note {
+    margin-top: calc(16 * var(--u));
+    font-size: calc(10.67 * var(--u));
+  }
+}
+@media (min-width: 1440px) {
+  .cta-form {
+    max-width: none;
+  }
 }
