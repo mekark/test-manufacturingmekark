@@ -91,7 +91,7 @@ export default function Hero() {
               <span>Manufacturing Plant. Design to Delivery</span>
               {/* Figma: 592x59 red box; the asterisk is a separate 30px glyph at x=565 */}
               <span className="hero-h1-box relative w-fit bg-[#ed1d23] px-[5px] text-[48px] leading-[56px]">
-                Construction - 150 days
+                Construction & Handover - 150 days
                 <span className="hero-h1-star absolute left-[565px] top-0 text-[30px] font-normal">*</span>
               </span>
             </h1>
@@ -128,7 +128,7 @@ export default function Hero() {
                 <span className="block text-sm leading-[18px] sm:text-2xl sm:leading-8">Design to Delivery</span>
               </h1>
               <p className="absolute left-0 top-[220px] flex h-[23px] w-fit items-center bg-[#c4161c] pl-5 pr-4 text-sm font-bold text-white md:left-0 md:pl-10">
-                Construction - 150 days<span className="relative -top-1 text-xs font-normal">*</span>
+                Construction & Handover - 150 days<span className="relative -top-1 text-xs font-normal">*</span>
               </p>
             </div>
             <div className="text-[13px] text-[#f3f3f3] md:text-[20px] md:leading-7 md:text-[#a9a9a9]">
