@@ -1,3 +1,7 @@
+"use client";
+
+import { namePattern, phonePattern } from "./formValidation";
+import { useEnquirySubmit } from "./useEnquirySubmit";
 import Image from "next/image";
 
 const field =
@@ -25,7 +29,14 @@ function Field({
   return (
     <div className={className}>
       <label htmlFor={id} className={label}>
-        {text}
+        {text.endsWith("*") ? (
+          <>
+            {text.slice(0, -1)}
+            <span className="text-[#ed1d23]">*</span>
+          </>
+        ) : (
+          text
+        )}
       </label>
       {children}
     </div>
@@ -63,6 +74,8 @@ function ContactCard({
 }
 
 export default function Cta() {
+  const { onSubmit, submitting, error } = useEnquirySubmit();
+
   return (
     <section id="contact" className="cta relative overflow-hidden bg-[#090909]">
       {/* Phone: portrait crop fading to black (Figma 8698:8862) */}
@@ -137,6 +150,7 @@ export default function Cta() {
 
           <form
             method="post"
+            onSubmit={onSubmit}
             className="cta-form mx-auto w-full max-w-[640px] rounded-3xl border border-[#e2e2e2] bg-white p-5 shadow-[0_24px_40px_rgba(0,0,0,0.06)] sm:rounded-[29px] sm:px-[46px] sm:py-[42px]"
           >
             <h3 className="text-center text-lg font-extrabold sm:text-[22px] tracking-[-0.5px] text-[#080808]">
@@ -148,38 +162,27 @@ export default function Cta() {
 
             <div className="cta-fields mt-4 grid gap-x-8 gap-y-4 sm:mt-5 sm:grid-cols-2 sm:gap-y-3">
               <Field id="cta-name" text="Full Name*">
-                <input id="cta-name" name="name" required autoComplete="name" placeholder="Enter Your name" className={field} />
+                <input id="cta-name" name="name" required autoComplete="name" {...namePattern} placeholder="Enter Your name" className={field} />
               </Field>
               <Field id="cta-location" text="Project Location">
-                <input id="cta-location" name="location" autoComplete="address-level2" placeholder="Enter project location" className={field} />
+                <input id="cta-location" name="location" autoComplete="address-level2" {...namePattern} placeholder="Enter project location" className={field} />
               </Field>
               <Field id="cta-phone" text="Mobile Number*">
-                <input id="cta-phone" name="phone" type="tel" inputMode="tel" required autoComplete="tel" placeholder="Mobile Number*" className={field} />
+                <input id="cta-phone" name="phone" type="tel" inputMode="tel" required autoComplete="tel" {...phonePattern} placeholder="Mobile Number*" className={field} />
               </Field>
               <Field id="cta-email" text="Email Address">
                 <input id="cta-email" name="email" type="email" autoComplete="email" placeholder="Enter Email Address" className={field} />
               </Field>
               <Field id="cta-industry" text="Industry Type*">
-                <select id="cta-industry" name="industry" required defaultValue="" className={`${field} select-chevron`}>
-                  <option value="" disabled>Select your Industry</option>
-                  <option>Automotive</option>
-                  <option>Engineering &amp; Machinery</option>
-                  <option>Electronics</option>
-                  <option>Food &amp; Beverage</option>
-                  <option>Pharma &amp; Chemicals</option>
-                  <option>Textiles</option>
-                  <option>Warehousing &amp; Logistics</option>
-                  <option>Other</option>
-                </select>
+                <input id="cta-industry" name="industry" required placeholder="Enter your Industry type" className={field} />
               </Field>
               <Field id="cta-sqft" text="Project Sq. Ft*">
                 <select id="cta-sqft" name="sqft" required defaultValue="" className={`${field} select-chevron`}>
-                  <option value="" disabled>Select Sq. Ft Requirement</option>
-                  <option>Below 10,000</option>
-                  <option>10,000 – 25,000</option>
-                  <option>25,000 – 50,000</option>
-                  <option>50,000 – 1,00,000</option>
-                  <option>Above 1,00,000</option>
+                  <option value="" disabled>Select Sq.ft Requirement</option>
+                  <option value="10,000 - 20,000 Sq.ft">10,000 – 20,000</option>
+                  <option value="20,000 - 30,000 Sq.ft">20,000 – 30,000</option>
+                  <option value="30,000 - 50,000 Sq.ft">30,000 – 50,000</option>
+                  <option value="Above 50,000 Sq.ft">Above 50,000 sq.ft</option>
                 </select>
               </Field>
               <Field id="cta-details" text="Requirement Details" className="sm:col-span-2">
@@ -189,10 +192,16 @@ export default function Cta() {
 
             <button
               type="submit"
-              className="cta-submit mt-4 h-[46px] w-full rounded-lg bg-[#c4161c] text-sm font-semibold sm:mt-5 sm:h-[58px] sm:text-base sm:font-extrabold text-[#f5f5f5] shadow-[0_8px_16px_rgba(196,22,28,0.3)] active:scale-[0.99]"
+              disabled={submitting}
+              className="cta-submit mt-4 h-[46px] w-full rounded-lg bg-[#c4161c] text-sm font-semibold sm:mt-5 sm:h-[58px] sm:text-base sm:font-extrabold text-[#f5f5f5] shadow-[0_8px_16px_rgba(196,22,28,0.3)] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Get My Free Quote →
+              {submitting ? "Submitting..." : "Get My Free Quote →"}
             </button>
+            {error && (
+              <p role="alert" className="mt-3 text-center text-xs font-medium text-[#c4161c]">
+                {error}
+              </p>
+            )}
             <p className="cta-note mt-4 text-center text-xs sm:text-[11px] font-medium tracking-[0.3px] text-[#5a5a5a]">
               100% Transparent Consultation with single point project support
             </p>

@@ -1,66 +1,63 @@
 import Image from "next/image";
 
-type Tile = { src: string; alt: string; w: number; h: number; sizes: string };
+type Tile = { src: string; alt: string; sizes: string };
 
-const T = {
-  farm: { src: "/hero/g1.webp", w: 854, h: 965, alt: "Aerial view of a completed teal and white factory building", sizes: "(min-width: 1024px) 30vw, 100vw" },
-  campus: { src: "/hero/g2.webp", w: 587, h: 315, alt: "Completed white industrial building with landscaped grounds", sizes: "(min-width: 1024px) 30vw, 50vw" },
-  roof: { src: "/hero/g3.webp", w: 587, h: 660, alt: "Aerial view of a factory roof under construction", sizes: "(min-width: 1024px) 22vw, 50vw" },
-  interior: { src: "/hero/g4.webp", w: 1079, h: 716, alt: "Interior of a large steel-frame manufacturing shed", sizes: "(min-width: 1024px) 38vw, 50vw" },
-  frame: { src: "/hero/g5.webp", w: 857, h: 707, alt: "Aerial view of a steel structure frame being erected", sizes: "(min-width: 1024px) 30vw, 50vw" },
-  yard: { src: "/hero/g6.webp", w: 857, h: 707, alt: "Industrial shed with equipment on site", sizes: "(min-width: 1024px) 30vw, 50vw" },
-} satisfies Record<string, Tile>;
+// The six Figma photos, shared by mobile, tablet and desktop. `round` is the desktop-only outer-corner rounding.
+const DESKTOP = [
+  { src: "/hero/gd1.webp", alt: "Modern industrial building with a louvred facade and loading yard", round: "rounded-tl-[32px]" },
+  { src: "/hero/gd2.webp", alt: "Large white warehouse with loading docks", round: "rounded-tr-[32px]" },
+  { src: "/hero/gd3.webp", alt: "Solo Paints industrial warehouse with a glazed entrance", round: "rounded-bl-[32px]" },
+  { src: "/hero/gd4.webp", alt: "Blue steel warehouse on an industrial estate", round: "rounded-br-[32px]" },
+  { src: "/hero/gd5.webp", alt: "Aerial view of a white factory building with a long roof", round: "rounded-bl-[32px]" },
+  { src: "/hero/gd6.webp", alt: "Industrial shed with loading docks and a parked truck", round: "rounded-br-[32px]" },
+];
 
-function Photo({ tile, className }: { tile: Tile; className: string }) {
+function Photo({ tile, className, sizes }: { tile: { src: string; alt: string }; className: string; sizes: string }) {
   return (
     <div className={`relative overflow-hidden bg-[#d9d9d9] ${className}`}>
-      <Image src={tile.src} alt={tile.alt} fill sizes={tile.sizes} quality={70} className="object-cover" />
+      <Image src={tile.src} alt={tile.alt} fill sizes={sizes} quality={75} className="object-cover" />
     </div>
   );
 }
 
-// Below lg the wrappers use `contents`, so the photos flow in a simple 2-column grid.
-// Below sm only four photos show (Figma mobile frame): wide, pair, wide.
 export default function ProjectsGallery() {
   return (
     <section className="bg-[#f9f6f7]">
-      <div className="mx-auto max-w-[1920px] px-5 py-8 sm:py-12 md:px-10 xl:px-20 xl:py-[70px]">
-        <div className="flex flex-col gap-4 sm:gap-[14px]">
-          <div className="flex flex-col gap-2.5 font-bold sm:gap-[13px]">
-            <p className="text-xs uppercase leading-[18px] tracking-[1.6px] text-[#ed1d23] sm:text-base sm:leading-[21.3px]">our work</p>
-            <h2 className="text-[28px] leading-8 text-[#0f172a] sm:text-[52px] sm:leading-[1.05] xl:text-[66px] xl:leading-[60px]">
-              Projects <span className="text-[#ed1d23]">Gallery</span>
-            </h2>
-          </div>
-          <p className="text-sm font-medium leading-5 text-[#64748b] sm:text-base sm:leading-7 md:text-[20px] xl:text-[24px] xl:leading-9">
-            Completed Manufacturing structures across Tamil Nadu and beyond.
-          </p>
-        </div>
-
-        <div className="mt-6 grid grid-cols-2 gap-x-3 gap-y-4 sm:mt-[50px] sm:gap-y-3 lg:grid-cols-[569fr_1167fr] lg:gap-6">
-          <div className="contents lg:flex lg:flex-col lg:gap-5">
-            <Photo tile={T.farm} className="col-span-2 h-[220px] sm:aspect-[4/3] sm:h-auto lg:aspect-auto lg:flex-[643]" />
-            <Photo tile={T.campus} className="col-span-2 h-[196px] max-sm:order-1 sm:col-span-1 sm:aspect-[4/3] sm:h-auto lg:aspect-auto lg:flex-[305]" />
-          </div>
-          <div className="contents lg:flex lg:flex-col lg:gap-5">
-            <div className="contents lg:grid lg:aspect-[1167/477] lg:grid-cols-[424fr_719fr] lg:gap-6">
-              <Photo tile={T.roof} className="h-[174px] sm:aspect-[4/3] sm:h-auto lg:aspect-auto" />
-              <Photo tile={T.interior} className="h-[174px] sm:aspect-[4/3] sm:h-auto lg:aspect-auto" />
+      <div className="mx-auto max-w-[1920px] px-5 py-8 sm:py-12 md:px-10 xl:px-20 xl:py-[52px]">
+        <div className="flex flex-col gap-6 sm:gap-[14px] lg:gap-0">
+          <div className="flex flex-col gap-4 sm:gap-[14px]">
+            <div className="flex flex-col gap-2.5 font-bold sm:gap-[13px]">
+              <p className="text-xs uppercase leading-[18px] tracking-[1.6px] text-[#ed1d23] sm:text-base sm:leading-[21.3px]">our work</p>
+              <h2 className="text-[28px] leading-8 text-[#0f172a] sm:text-[52px] sm:leading-[1.05] xl:text-[66px] xl:leading-[60px]">
+                Projects <span className="text-[#ed1d23]">Gallery</span>
+              </h2>
             </div>
-            <div className="contents lg:grid lg:aspect-[1167/471] lg:grid-cols-2 lg:gap-6">
-              <Photo tile={T.frame} className="hidden aspect-[4/3] sm:block lg:aspect-auto" />
-              <Photo tile={T.yard} className="hidden aspect-[4/3] sm:block lg:aspect-auto" />
-            </div>
+            <p className="max-w-[300px] text-sm font-normal leading-normal text-[#64748b] sm:max-w-none sm:text-base sm:font-medium sm:leading-7 md:text-[20px] xl:text-[24px] xl:leading-9">
+              <span className="sm:hidden">Our Completed Projects Across</span>
+              <span className="hidden sm:inline">Our Completed Projects Across India.</span>
+            </p>
           </div>
-        </div>
 
-        <div className="mt-6 flex justify-center sm:mt-10 xl:mt-[70px]">
-          <a
-            href="#"
-            className="w-full rounded-lg bg-[#c4161c] px-6 py-3.5 text-center text-sm font-semibold sm:w-auto sm:rounded-[8.8px] sm:px-10 sm:py-4 sm:text-xl sm:font-extrabold text-[#f5f5f5] shadow-[0_9px_18px_rgba(196,22,28,0.3)] xl:px-[50px] xl:py-5 xl:text-[24px]"
-          >
-            View All →
-          </a>
+          {/* Figma mobile (9791:1469): single column, six full-width 180px tiles, 16px gap */}
+          <div className="flex flex-col gap-4 sm:hidden">
+            {DESKTOP.map((tile) => (
+              <Photo key={tile.src} tile={tile} sizes="100vw" className="h-[180px] w-full" />
+            ))}
+          </div>
+
+          <div className="hidden grid-cols-2 gap-3 sm:grid lg:hidden">
+            {DESKTOP.map((tile) => (
+              <Photo key={tile.src} tile={tile} sizes="50vw" className="aspect-[4/3]" />
+            ))}
+          </div>
+
+          <div className="mt-[52px] hidden grid-cols-2 gap-[25px] lg:grid">
+            {DESKTOP.map((t) => (
+              <div key={t.src} className={`relative aspect-[867/488] overflow-hidden bg-[#d9d9d9] ${t.round}`}>
+                <Image src={t.src} alt={t.alt} fill sizes="(min-width: 1920px) 868px, 48vw" quality={75} className="object-cover" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

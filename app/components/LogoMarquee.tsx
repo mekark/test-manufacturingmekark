@@ -1,5 +1,8 @@
+import Image from "next/image";
+
 const CLIENTS = [
   "VWU",
+  "Caterpillar",
   "Voltas",
   "TVS",
   "Tata Electronics",
@@ -18,15 +21,25 @@ const CLIENTS = [
   "Komatsu",
 ];
 
+// Mobile shows four tiles (Figma): L&T, Caterpillar, TVS, Tata.
+const MOBILE_LOGOS = [
+  { name: "L&T", src: "/hero/logo-lt.webp", w: 64, h: 35 },
+  { name: "Caterpillar", src: "/hero/logo-cat.webp", w: 48, h: 48 },
+  { name: "TVS", src: "/hero/logo-tvs.webp", w: 52, h: 53 },
+  { name: "Tata", src: "/hero/logo-tata.webp", w: 32, h: 32 },
+];
+
 export default function LogoMarquee() {
   return (
     <div className="w-full max-w-[847px] rounded-[10px] bg-gradient-to-b from-[#08090a] to-[#654528] px-4 py-6 sm:h-[147px] sm:rounded-[18px] sm:from-[#060606] sm:to-[#693f1d]/50 sm:py-4 sm:pl-8 sm:pr-[26px] sm:pt-[21px]">
       <p className="mb-4 text-[14px] font-semibold uppercase leading-5 text-[#ed1d23] sm:text-[#fa7783] sm:mb-[31px] sm:text-[14px]">
         Trusted Across India
       </p>
-      <div className="flex flex-wrap gap-x-[18px] gap-y-2 sm:hidden" aria-label={`Trusted by ${CLIENTS.slice(0, 4).join(", ")}`} role="img">
-        {CLIENTS.slice(0, 4).map((name, i) => (
-          <span key={name} aria-hidden="true" className="logo-tile-sm" style={{ backgroundPositionX: `${-i * 63}px` }} />
+      <div className="flex flex-wrap gap-x-[18px] gap-y-2 sm:hidden" aria-label={`Trusted by ${MOBILE_LOGOS.map((l) => l.name).join(", ")}`} role="img">
+        {MOBILE_LOGOS.map((logo) => (
+          <span key={logo.name} aria-hidden="true" className="flex h-10 w-16 items-center justify-center overflow-hidden rounded-md bg-[#f9f6f7]">
+            <Image src={logo.src} alt="" width={logo.w} height={logo.h} className="max-w-none shrink-0" />
+          </span>
         ))}
       </div>
       <div

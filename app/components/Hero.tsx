@@ -1,20 +1,31 @@
 import Image from "next/image";
 import LeadForm from "./LeadForm";
 import LogoMarquee from "./LogoMarquee";
+import { PHONE_NUMBER, WHATSAPP_URL } from "./contact";
 
-// Replace with the real contact details.
-const PHONE = "+919876543210";
-const WHATSAPP = `https://wa.me/${PHONE.replace("+", "")}`;
+const PHONE = `+91${PHONE_NUMBER}`;
+const WHATSAPP = WHATSAPP_URL;
 
 const POINTS = [
-  "End-to-End Turnkey Factory Construction",
-  "Integrated Design, Fabrication & Construction",
-  "Precision-Engineered Industrial Buildings",
-  "Single-Point Accountability from Design to Delivery",
+  "Automotive, EV, Electronics, Electrical & Semiconductor.",
+  "Renewable Energy, Engineering,Electrical Vehicle.",
+  "Clean-Tech, Engineering, Machinery & Heavy Manufacturing.",
+  "Pharmaceutical, Chemical & Life Sciences.",
+  "Metals, Steel, Building Materials, Packaging & Plastics.",
+  "Textile, Apparel, Leather, Food, Beverage, FMCG.",
+];
+
+const DESKTOP_POINTS = [
+  "Automotive, EV, Electronics, Electrical & Semiconductor.",
+  "Renewable Energy, Engineering, Electrical Vehicle.",
+  "Cold Storage & Clean Rooms, Machinery & Heavy Manufacturing.",
+  "Textile, Pharmaceutical, Chemical & Life Sciences.",
+  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
+  "Apparel, Leather, Food Processing, Beverage, FMCG.",
 ];
 
 const STATS = [
-  { value: "200", accent: "+", label: "Projects" },
+  { value: "300", accent: "+", label: "Projects" },
   { value: "18", accent: "+", label: "Years Experience" },
   { value: "40,000 ", accent: "MT", label: "Annual Production" },
   { value: "175", accent: "+", label: "Engineering Team" },
@@ -22,7 +33,7 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section id="top" className="relative isolate overflow-hidden bg-[#060606] text-white xl:min-h-[1017px]">
+    <section id="top" className="relative isolate z-40 overflow-hidden bg-[#060606] text-white xl:min-h-[1017px]">
       {/* Figma: 1697x1129 image pinned right (88.4% of 1920), 48px cropped at top */}
       {/* Mobile/tablet background */}
       <div className="absolute inset-0 -z-20 lg:hidden">
@@ -40,7 +51,7 @@ export default function Hero() {
           className="object-cover object-center"
         />
       </div>
-      <div className="absolute inset-0 -z-10 bg-[#0f0f0f]/55 lg:bg-transparent lg:bg-[linear-gradient(to_right,#060606_25%,rgba(6,6,6,0.8)_43%,rgba(6,6,6,0)_88%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(6,6,6,0.94),rgba(6,6,6,0.88)_40%,rgba(6,6,6,0.78))] lg:bg-[linear-gradient(to_right,#060606_25%,rgba(6,6,6,0.8)_43%,rgba(6,6,6,0)_88%)]" />
 
       {/* Mobile nav: fixed bar with logo and quote button */}
       <nav
@@ -65,26 +76,69 @@ export default function Hero() {
 
       <div className="mx-auto max-w-[1920px] px-5 md:px-10 xl:px-20">
       <div className="grid max-w-[1733px] items-center grid-cols-[minmax(0,1fr)] gap-4 pb-12 pt-0 sm:gap-10 sm:pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:py-12 xl:mb-[88px] xl:mt-[9px] xl:min-h-[840px] xl:py-0 min-[1720px]:grid-cols-[879px_660px] min-[1720px]:justify-between">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-3">
-            <div className="relative -mx-5 h-[245px] overflow-hidden px-5 pt-[18px] md:-mx-10 md:px-10 lg:m-0 lg:h-auto lg:overflow-visible lg:p-0">
-              <div aria-hidden="true" className="absolute inset-0 lg:hidden">
-                <Image src="/hero/m-hero.webp" alt="" fill priority quality={70} sizes="100vw" className="object-cover object-[60%_center]" />
-                <div className="absolute inset-x-0 top-0 h-[150px] bg-gradient-to-b from-[#060606] via-[#3e3e3e]/75 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 h-[55px] bg-gradient-to-b from-transparent to-[#1e1e1e]/90" />
-              </div>
-              <h1 className="relative max-w-[879px] text-[28px] font-bold leading-[31px] sm:text-[44px] sm:leading-[1.1] xl:text-[54px] xl:leading-[58px]">
-                One Contract. <span className="text-[#ed1d23]">Your Entire Plant.</span>{" "}
-                <br className="hidden sm:block" />
-                No Handoffs.
-                </h1>
-            </div>
-            <p className="max-w-[879px] text-sm leading-[1.4] text-[#f3f3f3] md:text-[20px] md:leading-7 md:text-[#a9a9a9] xl:text-[22px]">
-              From concept to commissioning, Inbuilt Infra develops high-performance factory buildings tailored to the operational needs of manufacturers. Every project is executed with engineering precision, single-point accountability, and uncompromising quality.
+        <div className="flex flex-col gap-[13px] lg:gap-6">
+          <div className="relative z-10 flex w-fit items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 max-lg:-mb-[17px] lg:gap-[10.667px] lg:border-[1.333px] lg:px-[17.333px] lg:py-[9.333px]">
+            <span className="size-2 rounded-full bg-[#e40015] lg:size-[10.667px]" />
+            <span className="text-[9px] font-medium leading-4 lg:text-base lg:leading-[21.333px]">
+              <span className="lg:hidden">Turnkey Manufacturing plant construction company &amp; contractor</span>
+              <span className="hidden lg:inline">Turnkey Manufacturing plant construction company &amp; Manufacturing plant contractor</span>
+            </span>
+          </div>
+
+          <div className="hidden flex-col gap-4 lg:flex">
+            <h1 className="flex flex-col items-start gap-[14px] text-[50px] font-bold leading-[58px]">
+              <span>Manufacturing Plant. Design to Delivery</span>
+              <span className="bg-[#ed1d23] px-[5px] text-[48px]">
+                Construction - 150 days<span className="relative -top-3 text-[30px] font-normal">*</span>
+              </span>
+            </h1>
+            <p className="max-w-[879px] text-[22px] leading-7 text-[#a9a9a9]">
+              <span className="font-bold text-[#ed1d23]">MEKARK</span> - Builds Every Structure You Want.
+              <br />
+              All kinds of Manufacturing plant constructions – <span className="font-bold text-white">ALL INDIA</span>
             </p>
           </div>
 
-          <ul className="grid gap-x-6 gap-y-1.5 text-xs font-medium text-white/70 sm:grid-cols-2 sm:gap-y-4 sm:text-base sm:font-normal xl:text-[18px] min-[1720px]:grid-cols-[repeat(2,max-content)] min-[1720px]:gap-y-5">
+          <div className="hidden flex-col gap-4 lg:flex">
+            <p className="text-[22px] font-bold leading-7 text-[#f3f3f3]">In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.</p>
+            <ul className="grid grid-cols-[repeat(2,max-content)] grid-rows-3 grid-flow-col gap-x-5 gap-y-4 text-[18px] leading-5 text-[#f7f7f7]">
+              {DESKTOP_POINTS.map((p) => (
+                <li key={p} className="flex items-center gap-2">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="size-6 shrink-0">
+                    <path d="M9 18l6-6-6-6" stroke="#E40015" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="whitespace-nowrap">{p}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col gap-3 lg:hidden">
+            <div className="relative -mx-5 h-[252px] overflow-hidden px-5 pt-2.5 md:-mx-10 md:px-10">
+              <div aria-hidden="true" className="absolute inset-0">
+                <Image src="/hero/m-hero-2.webp" alt="" fill priority quality={70} sizes="100vw" className="object-cover object-top" />
+                <div className="absolute inset-x-0 top-0 h-[135px] bg-gradient-to-b from-[#060606] to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-[47px] bg-gradient-to-b from-transparent to-[#1e1e1e]" />
+              </div>
+              <h1 className="relative max-w-[879px] font-bold">
+                <span className="block text-[28px] leading-[31px] sm:text-[44px] sm:leading-[1.1]">Manufacturing Plant.</span>
+                <span className="block text-sm leading-[18px] sm:text-2xl sm:leading-8">Design to Delivery</span>
+              </h1>
+              <p className="absolute left-0 top-[220px] flex h-[23px] w-fit items-center bg-[#c4161c] pl-5 pr-4 text-sm font-bold text-white md:left-0 md:pl-10">
+                Construction - 150 days<span className="relative -top-1 text-xs font-normal">*</span>
+              </p>
+            </div>
+            <div className="text-[13px] text-[#f3f3f3] md:text-[20px] md:leading-7 md:text-[#a9a9a9]">
+              <p>
+                <span className="text-[#ed1d23]">MEKARK</span> - Builds Every Structure You Want.
+                <br />
+                All kinds of Manufacturing plant constructions – <span className="font-bold text-white">ALL INDIA</span>
+              </p>
+            </div>
+            <p className="text-[13px] font-bold text-white md:text-[20px]">In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.</p>
+          </div>
+
+          <ul className="grid gap-x-6 gap-y-1.5 text-xs font-medium text-white/70 sm:grid-cols-2 sm:gap-y-4 sm:text-base sm:font-normal lg:hidden">
             {POINTS.map((p) => (
               <li key={p} className="flex items-center gap-2 px-3 sm:items-start sm:px-0">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="size-[15px] shrink-0 sm:size-6">
