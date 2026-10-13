@@ -15,9 +15,10 @@ const POINTS = [
   "Textile, Apparel, Leather, Food, Beverage, FMCG.",
 ];
 
+// Row-major, as laid out in the Figma 2x3 grid.
 const DESKTOP_POINTS = [
   "Automotive, EV, Electronics, Electrical & Semiconductor.",
-  "Renewable Energy, Engineering, Electrical Vehicle.",
+  "Renewable Energy, Engineering,Electrical Vehicle.",
   "Cold Storage & Clean Rooms, Machinery & Heavy Manufacturing.",
   "Textile, Pharmaceutical, Chemical & Life Sciences.",
   "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
@@ -33,13 +34,13 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section id="top" className="relative isolate z-40 overflow-hidden bg-[#060606] text-white xl:min-h-[1017px]">
+    <section id="top" className="hero relative isolate z-40 overflow-hidden bg-[#060606] text-white">
       {/* Figma: 1697x1129 image pinned right (88.4% of 1920), 48px cropped at top */}
       {/* Mobile/tablet background */}
       <div className="absolute inset-0 -z-20 lg:hidden">
         <Image src="/hero/m-bg.webp" alt="" fill quality={60} sizes="100vw" className="object-cover object-top" />
       </div>
-      <div className="absolute -z-20 hidden lg:right-0 lg:top-[-48px] lg:block lg:h-[1129px] lg:w-[88.4%]">
+      <div className="hero-bg absolute -z-20 hidden lg:right-0 lg:top-[-48px] lg:block lg:h-[1129px] lg:w-[88.4%]">
         <Image
           src="/hero/bg.webp"
           alt=""
@@ -67,47 +68,49 @@ export default function Hero() {
       </nav>
       <div aria-hidden="true" className="h-14 md:hidden" />
 
-      <header className="mx-auto hidden h-20 max-w-[1920px] items-center justify-between px-5 md:flex md:px-10 xl:px-20">
-        <Image src="/hero/mekark-logo.webp" alt="Mekark" width={132} height={46} priority className="h-auto w-[104px] md:w-[132px]" />
-        <a href="#quote" className="rounded-lg bg-[#c4161c] px-5 py-2.5 text-sm leading-[22px] font-semibold text-[#f5f5f5] shadow-[0_9px_18px_rgba(196,22,28,0.3)] md:px-6 md:text-base md:leading-[22px]">
+      <header className="hero-header mx-auto hidden h-20 max-w-[1920px] items-center justify-between px-5 md:flex md:px-10 xl:px-20">
+        <Image src="/hero/mekark-logo.webp" alt="Mekark" width={132} height={46} priority className="hero-logo h-auto w-[104px] md:w-[132px]" />
+        <a href="#quote" className="hero-quote rounded-lg bg-[#c4161c] px-5 py-2.5 text-sm leading-[22px] font-semibold text-[#f5f5f5] shadow-[0_9px_18px_rgba(196,22,28,0.3)] md:px-6 md:text-base md:leading-[22px]">
           Get Free Quote
         </a>
       </header>
 
-      <div className="mx-auto max-w-[1920px] px-5 md:px-10 xl:px-20">
-      <div className="grid max-w-[1733px] items-center grid-cols-[minmax(0,1fr)] gap-4 pb-12 pt-0 sm:gap-10 sm:pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:py-12 xl:mb-[88px] xl:mt-[9px] xl:min-h-[840px] xl:py-0 min-[1720px]:grid-cols-[879px_660px] min-[1720px]:justify-between">
-        <div className="flex flex-col gap-[13px] lg:gap-6">
-          <div className="relative z-10 flex w-fit items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 max-lg:-mb-[17px] lg:gap-[10.667px] lg:border-[1.333px] lg:px-[17.333px] lg:py-[9.333px]">
-            <span className="size-2 rounded-full bg-[#e40015] lg:size-[10.667px]" />
-            <span className="text-[9px] font-medium leading-4 lg:text-base lg:leading-[21.333px]">
+      <div className="hero-body mx-auto max-w-[1920px] px-5 md:px-10 xl:px-20">
+      <div className="hero-grid grid max-w-[1733px] items-center grid-cols-[minmax(0,1fr)] gap-4 pb-12 pt-0 sm:gap-10 sm:pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:py-12">
+        <div className="hero-left flex flex-col gap-[13px] lg:gap-6">
+          <div className="hero-pill relative z-10 flex w-fit items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 max-lg:-mb-[17px] lg:gap-[10.667px] lg:border-[1.333px] lg:px-[17.333px] lg:py-[9.333px]">
+            <span className="hero-dot size-2 rounded-full bg-[#e40015] lg:size-[10.667px]" />
+            <span className="hero-pill-text text-[9px] font-medium leading-4 lg:text-base lg:leading-[21.333px]">
               <span className="lg:hidden">Turnkey Manufacturing plant construction company &amp; contractor</span>
               <span className="hidden lg:inline">Turnkey Manufacturing plant construction company &amp; Manufacturing plant contractor</span>
             </span>
           </div>
 
-          <div className="hidden flex-col gap-4 lg:flex">
-            <h1 className="flex flex-col items-start gap-[14px] text-[50px] font-bold leading-[58px]">
+          <div className="hero-copy hidden flex-col gap-4 lg:flex">
+            <h1 className="hero-h1 flex flex-col items-start gap-[14px] text-[50px] font-bold leading-[58px]">
               <span>Manufacturing Plant. Design to Delivery</span>
-              <span className="bg-[#ed1d23] px-[5px] text-[48px]">
-                Construction - 150 days<span className="relative -top-3 text-[30px] font-normal">*</span>
+              {/* Figma: 592x59 red box; the asterisk is a separate 30px glyph at x=565 */}
+              <span className="hero-h1-box relative w-fit bg-[#ed1d23] px-[5px] text-[48px] leading-[56px]">
+                Construction - 150 days
+                <span className="hero-h1-star absolute left-[565px] top-0 text-[30px] font-normal">*</span>
               </span>
             </h1>
-            <p className="max-w-[879px] text-[22px] leading-7 text-[#a9a9a9]">
+            <p className="hero-sub max-w-[879px] text-[22px] leading-7 text-[#a9a9a9]">
               <span className="font-bold text-[#ed1d23]">MEKARK</span> - Builds Every Structure You Want.
               <br />
               All kinds of Manufacturing plant constructions – <span className="font-bold text-white">ALL INDIA</span>
             </p>
           </div>
 
-          <div className="hidden flex-col gap-4 lg:flex">
-            <p className="text-[22px] font-bold leading-7 text-[#f3f3f3]">In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.</p>
-            <ul className="grid grid-cols-[repeat(2,max-content)] grid-rows-3 grid-flow-col gap-x-5 gap-y-4 text-[18px] leading-5 text-[#f7f7f7]">
+          <div className="hero-copy hidden flex-col gap-4 lg:flex">
+            <p className="hero-sub text-[22px] font-bold leading-7 text-[#f3f3f3]">In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.</p>
+            <ul className="hero-points grid gap-x-5 gap-y-4 text-[18px] leading-5 text-[#f7f7f7]">
               {DESKTOP_POINTS.map((p) => (
                 <li key={p} className="flex items-center gap-2">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="size-6 shrink-0">
                     <path d="M9 18l6-6-6-6" stroke="#E40015" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span className="whitespace-nowrap">{p}</span>
+                  <span>{p}</span>
                 </li>
               ))}
             </ul>
@@ -151,27 +154,24 @@ export default function Hero() {
 
           <LogoMarquee />
 
-          <dl className="grid grid-cols-2 gap-3 sm:flex sm:w-fit sm:flex-wrap sm:gap-x-12 sm:gap-y-6 sm:border-t sm:border-[#e2e2e2] sm:py-4">
+          <dl className="hero-stats grid grid-cols-2 gap-3 sm:flex sm:w-fit sm:flex-wrap sm:gap-x-12 sm:gap-y-6 sm:border-t sm:border-[#e2e2e2] sm:py-4">
             {STATS.map((s) => (
               <div key={s.label} className="flex flex-col-reverse justify-end gap-1 rounded-[10px] border border-white/[0.08] bg-[#1a1a1a] px-4 py-3 min-[380px]:px-5 sm:gap-[5.3px] sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
                 <dt className="text-[10px] font-semibold uppercase text-[#9a9a9a] sm:text-base">{s.label}</dt>
                 <dd className="whitespace-nowrap text-xl font-extrabold leading-[normal] min-[380px]:text-2xl sm:text-[42px]">
                   {s.value}
-                  <span className="text-[#c4161c] sm:text-[#ed1d23]">{s.accent}</span>
+                  <span className={s.accent === "MT" ? "text-[#c4161c] sm:text-[#ed1d23]" : "text-[#c4161c]"}>{s.accent}</span>
                 </dd>
               </div>
             ))}
           </dl>
 
-          <div className="hidden flex-wrap gap-4 md:flex md:gap-[30px]">
-            <a href={WHATSAPP} className="flex h-[55px] items-center gap-2 rounded-full bg-white px-6 text-base font-bold text-[#e5091f]">
+          <div className="hero-ctas hidden flex-wrap gap-4 md:flex md:gap-[30px]">
+            <a href={WHATSAPP} className="hero-cta flex h-[55px] items-center gap-2 rounded-full bg-white px-6 text-base font-bold text-[#e5091f]">
               WhatsApp
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
-                <path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.7a4 4 0 0 1-1.9-1.9l.7-.8-1-2z" fill="currentColor" stroke="none" />
-              </svg>
+              <Image src="/hero/hero-wa.svg" alt="" width={18} height={18} />
             </a>
-            <a href={`tel:${PHONE}`} className="flex h-[55px] items-center gap-2 rounded-full border border-white px-6 text-base font-bold">
+            <a href={`tel:${PHONE}`} className="hero-cta flex h-[55px] items-center gap-2 rounded-full border border-white px-6 text-base font-bold">
               Call Now
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M9.75 1.5a6.75 6.75 0 0 1 6.75 6.75M9.75 4.5a3.75 3.75 0 0 1 3.75 3.75M10.374 12.426a.75.75 0 0 0 .91-.227l.266-.349a1.5 1.5 0 0 1 1.2-.6H15a1.5 1.5 0 0 1 1.5 1.5V15A1.5 1.5 0 0 1 15 16.5C7.8 16.5 1.5 10.2 1.5 3A1.5 1.5 0 0 1 3 1.5h2.25A1.5 1.5 0 0 1 6.75 3v2.25a1.5 1.5 0 0 1-.6 1.2l-.35.263a.75.75 0 0 0-.22.925 11.3 11.3 0 0 0 4.794 4.789z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -180,7 +180,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div id="quote" className="scroll-mt-16 max-sm:px-4 min-[1720px]:mr-[34px]">
+        <div id="quote" className="scroll-mt-16 max-sm:px-4">
           <LeadForm />
         </div>
 

@@ -84,20 +84,20 @@ const STEPS: { title: string; text: string; icon: ReactNode }[] = [
 
 export default function ProjectApproach() {
   return (
-    <section className="bg-[#f9f6f7]">
-      <div className="mx-auto max-w-[1920px] px-5 py-8 md:px-10 md:py-16 xl:p-20">
+    <section className="pa bg-[#f9f6f7]">
+      <div className="pa-inner mx-auto max-w-[1920px] px-5 py-8 md:px-10 md:py-16 xl:p-20">
         <div className="max-w-[1015px] xl:max-w-none">
-          <h2 className="text-[26px] font-bold leading-[34px] text-[#0f172a] sm:text-[52px] sm:leading-[1.11] xl:text-[66px] xl:leading-[73.333px]">
+          <h2 className="pa-title text-[26px] font-bold leading-[34px] text-[#0f172a] sm:text-[52px] sm:leading-[1.11] xl:text-[66px] xl:leading-[73.333px]">
             Our Turnkey <span className="text-[#ed1d23]">Manufacturing Plant Construction</span>
           </h2>
-          <p className="mt-3 text-sm leading-5 text-[#64748b] sm:mt-4 md:text-[20px] md:leading-7 xl:max-w-[1652px] xl:text-[24px] xl:leading-[34px]">
+          <p className="pa-sub mt-3 text-sm leading-5 text-[#64748b] sm:mt-4 md:text-[20px] md:leading-7 xl:max-w-[1652px] xl:text-[24px] xl:leading-[34px]">
             As a manufacturing plant construction company, we follow a proven 6-step process to ensure on-time delivery.
           </p>
         </div>
 
-        <ol className="mt-6 grid gap-x-10 gap-y-5 sm:mt-[50px] sm:gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-x-[27px]">
+        <ol className="pa-list mt-6 grid gap-x-10 gap-y-5 sm:mt-[50px] sm:gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-x-[27px]">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="relative flex items-center gap-[17px] sm:flex-col sm:items-start sm:gap-[52px]">
+            <li key={s.title} className="pa-item relative flex items-center gap-[17px] sm:flex-col sm:items-start sm:gap-[52px]">
               {i < STEPS.length - 1 && (
                 <span
                   aria-hidden="true"
@@ -113,25 +113,29 @@ export default function ProjectApproach() {
               {i < STEPS.length - 1 && (
                 <span
                   aria-hidden="true"
-                  className="absolute left-[100px] top-[47.67px] hidden h-px w-[calc(100%-60px)] bg-[#e4dfe0] xl:block"
+                  className="pa-line absolute left-[100px] top-[47.67px] hidden h-px w-[calc(100%-60px)] bg-[#e4dfe0] xl:block"
                 />
               )}
               <span
                 aria-hidden="true"
-                className="relative flex size-[33px] shrink-0 items-center justify-center rounded-full border border-dashed border-[#bcbcbc] bg-[#f9f6f7] text-[14px] font-bold text-[#080808] sm:hidden"
+                className="relative flex size-[33px] shrink-0 items-center justify-center rounded-full bg-[#f9f6f7] text-[14px] font-bold text-[#080808] sm:hidden"
               >
+                {/* 8 dashes: circumference 2π·15.5 ≈ 97.4 → 8 × (9.2 dash + 3 gap) */}
+                <svg viewBox="0 0 33 33" className="absolute inset-0 size-full" fill="none" aria-hidden="true">
+                  <circle cx="16.5" cy="16.5" r="15.5" stroke="#bcbcbc" strokeWidth="1" strokeDasharray="9.2 2.98" />
+                </svg>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="flex min-w-0 flex-1 items-center gap-2.5 rounded-md bg-[#fffcfc] py-1.5 pl-2.5 pr-[9px] shadow-[-1px_1px_3px_rgba(30,30,30,0.1)] sm:contents">
-                <div className="relative flex size-5 shrink-0 items-center justify-center sm:h-[92px] sm:w-[100px] sm:rounded-[18px] sm:border sm:border-[#e4dfe0] sm:bg-white">
+                <div className="pa-icon relative flex size-5 shrink-0 items-center justify-center sm:h-[92px] sm:w-[100px] sm:rounded-[18px] sm:border sm:border-[#e4dfe0] sm:bg-white">
                   {s.icon}
                 </div>
-                <div className="flex min-w-0 flex-col gap-px sm:gap-3">
-                  <span className="hidden text-[26px] font-bold leading-[21.333px] text-[#ed1d23] sm:block">
+                <div className="pa-text flex min-w-0 flex-col gap-px sm:gap-3">
+                  <span className="pa-num hidden text-[26px] font-bold leading-[21.333px] text-[#ed1d23] sm:block">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-base font-semibold leading-normal text-[#0f172a] sm:text-[20px] sm:font-bold sm:leading-6 sm:text-black">{s.title}</h3>
-                  <p className="text-xs leading-[18px] text-[#64748b] sm:max-w-[257px] sm:text-[18px] sm:leading-[22.667px]">{s.text}</p>
+                  <h3 className="pa-h text-base font-semibold leading-normal text-[#0f172a] sm:text-[20px] sm:font-bold sm:leading-6 sm:text-black">{s.title}</h3>
+                  <p className="pa-p text-xs leading-[18px] text-[#64748b] sm:max-w-[257px] sm:text-[18px] sm:leading-[22.667px]">{s.text}</p>
                 </div>
               </div>
             </li>

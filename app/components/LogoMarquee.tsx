@@ -31,13 +31,13 @@ const MOBILE_LOGOS = [
 
 export default function LogoMarquee() {
   return (
-    <div className="w-full max-w-[847px] rounded-[10px] bg-gradient-to-b from-[#08090a] to-[#654528] px-4 py-6 sm:h-[147px] sm:rounded-[18px] sm:from-[#060606] sm:to-[#693f1d]/50 sm:py-4 sm:pl-8 sm:pr-[26px] sm:pt-[21px]">
-      <p className="mb-4 text-[14px] font-semibold uppercase leading-5 text-[#ed1d23] sm:text-[#fa7783] sm:mb-[31px] sm:text-[14px]">
+    <div className="hero-trust w-full max-w-[847px] rounded-[10px] bg-gradient-to-b from-[#08090a] to-[#654528] px-4 py-6 sm:h-[147px] sm:rounded-[18px] sm:from-[#060606] sm:to-[#693f1d]/50 sm:py-4 sm:pl-8 sm:pr-[26px] sm:pt-[21px]">
+      <p className="hero-trust-label mb-4 text-[14px] font-semibold uppercase leading-5 text-[#ed1d23] sm:text-[#fa7783] sm:mb-[31px] sm:text-[14px]">
         Trusted Across India
       </p>
-      <div className="flex flex-wrap gap-x-[18px] gap-y-2 sm:hidden" aria-label={`Trusted by ${MOBILE_LOGOS.map((l) => l.name).join(", ")}`} role="img">
+      <div className="flex flex-nowrap gap-x-3 sm:hidden" aria-label={`Trusted by ${MOBILE_LOGOS.map((l) => l.name).join(", ")}`} role="img">
         {MOBILE_LOGOS.map((logo) => (
-          <span key={logo.name} aria-hidden="true" className="flex h-10 w-16 items-center justify-center overflow-hidden rounded-md bg-[#f9f6f7]">
+          <span key={logo.name} aria-hidden="true" className="flex h-10 w-16 min-w-0 shrink items-center justify-center overflow-hidden rounded-md bg-[#f9f6f7]">
             <Image src={logo.src} alt="" width={logo.w} height={logo.h} className="max-w-none shrink-0" />
           </span>
         ))}
@@ -53,7 +53,7 @@ export default function LogoMarquee() {
               <span
                 key={`${copy}-${name}`}
                 className="logo-tile"
-                style={{ backgroundPositionX: `${-i * 90}px` }}
+                style={{ "--i": i } as React.CSSProperties}
               />
             )),
           )}

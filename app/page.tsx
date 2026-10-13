@@ -7,10 +7,7 @@ import WhyMekark from "./components/WhyMekark";
 
 export default function Home() {
   return (
-    <main>\
-
-
-      
+    <main>
       <Hero />
       <ProjectApproach />
       <WhyMekark />

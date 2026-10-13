@@ -22,16 +22,216 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Logo strip: one sprite image, GPU-only transform animation. */
+/* Logo strip: one sprite image, GPU-only transform animation. Sizes follow the hero's --u when it scales. */
 .logo-tile {
-  width: 90px;
-  height: 40px;
+  width: calc(90 * var(--u, 1px));
+  height: calc(40 * var(--u, 1px));
   flex: none;
-  margin-right: 50px;
-  border-radius: 8px;
+  margin-right: calc(50 * var(--u, 1px));
+  border-radius: calc(8 * var(--u, 1px));
   background-image: url("/hero/logos.webp");
-  background-size: 1620px 40px;
+  background-size: calc(1620 * var(--u, 1px)) calc(40 * var(--u, 1px));
+  background-position-x: calc(var(--i) * -90 * var(--u, 1px));
   background-repeat: no-repeat;
+}
+
+/* Hero: at lg+ everything scales from the 1920x1018 Figma frame (--u = 1 design px). */
+@media (min-width: 1024px) {
+  .hero {
+    --u: min(0.0520833vw, 1px);
+  }
+  .hero-bg {
+    top: calc(-48 * var(--u));
+    width: calc(1697 * var(--u));
+    height: calc(1129 * var(--u));
+  }
+  .hero-header {
+    height: calc(80 * var(--u));
+    padding: 0 calc(80 * var(--u));
+  }
+  .hero-logo {
+    width: calc(132 * var(--u));
+  }
+  .hero-quote {
+    padding: calc(10 * var(--u)) calc(24 * var(--u));
+    border-radius: calc(8 * var(--u));
+    font-size: calc(16 * var(--u));
+    line-height: calc(22 * var(--u));
+  }
+  .hero-body {
+    padding: 0 calc(80 * var(--u));
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) calc(660.688 * var(--u));
+    gap: 0;
+    max-width: calc(1733 * var(--u));
+    min-height: calc(840.333 * var(--u));
+    margin: calc(9 * var(--u)) 0 calc(88.67 * var(--u));
+    padding: 0;
+  }
+  .hero-left {
+    gap: calc(24 * var(--u));
+  }
+  .hero-pill {
+    gap: calc(10.667 * var(--u));
+    border-width: calc(1.333 * var(--u));
+    padding: calc(9.333 * var(--u)) calc(17.333 * var(--u));
+  }
+  .hero-dot {
+    width: calc(10.667 * var(--u));
+    height: calc(10.667 * var(--u));
+  }
+  .hero-pill-text {
+    font-size: calc(16 * var(--u));
+    line-height: calc(21.333 * var(--u));
+  }
+  .hero-copy {
+    gap: calc(16 * var(--u));
+  }
+  .hero-h1 {
+    gap: calc(14 * var(--u));
+    font-size: calc(50 * var(--u));
+    line-height: calc(58 * var(--u));
+    white-space: nowrap;
+  }
+  /* 592x59 box; text centre sits ~27px from the top */
+  .hero-h1-box {
+    width: calc(592 * var(--u));
+    height: calc(59 * var(--u));
+    padding: 0 0 0 calc(5 * var(--u));
+    font-size: calc(48 * var(--u));
+    line-height: calc(54.66 * var(--u));
+    white-space: nowrap;
+  }
+  .hero-h1-star {
+    left: calc(565 * var(--u));
+    top: calc(-2 * var(--u));
+    font-size: calc(30 * var(--u));
+    line-height: calc(58 * var(--u));
+  }
+  .hero-sub {
+    max-width: none;
+    font-size: calc(22 * var(--u));
+    line-height: calc(28 * var(--u));
+  }
+  .hero-points {
+    grid-template-columns: repeat(2, max-content);
+    column-gap: calc(20 * var(--u));
+    row-gap: calc(16 * var(--u));
+    font-size: calc(18 * var(--u));
+    line-height: calc(20 * var(--u));
+    white-space: nowrap;
+  }
+  /* Figma: most items are 19 tall (icon overflows); items 2 and 6 hug the 24px icon, so rows are 24/19/24 */
+  .hero-points li {
+    height: calc(19 * var(--u));
+    gap: calc(8 * var(--u));
+  }
+  .hero-points li:nth-child(2),
+  .hero-points li:nth-child(6) {
+    height: auto;
+  }
+  .hero-points svg {
+    width: calc(24 * var(--u));
+    height: calc(24 * var(--u));
+  }
+  .hero-trust {
+    width: calc(847 * var(--u));
+    max-width: none;
+    height: calc(147 * var(--u));
+    padding: calc(20.67 * var(--u)) 0 0 calc(32 * var(--u));
+    border-radius: calc(18 * var(--u));
+  }
+  .hero-trust-label {
+    margin: 0 0 calc(32.13 * var(--u)) calc(10 * var(--u));
+    font-size: calc(14 * var(--u));
+    line-height: calc(20 * var(--u));
+  }
+  .hero-trust .overflow-hidden {
+    width: calc(789 * var(--u));
+  }
+  .hero-stats {
+    height: calc(117.33 * var(--u));
+    align-items: center;
+    gap: calc(48 * var(--u));
+    padding: 0;
+    border-top-width: calc(0.667 * var(--u));
+  }
+  .hero-stats > div {
+    gap: calc(5.33 * var(--u));
+  }
+  .hero-stats dt {
+    font-size: calc(16 * var(--u));
+  }
+  .hero-stats dd {
+    font-size: calc(42 * var(--u));
+  }
+  .hero-ctas {
+    gap: calc(30 * var(--u));
+  }
+  .hero-cta {
+    height: calc(55.33 * var(--u));
+    gap: calc(9.623 * var(--u));
+    padding: 0 calc(24.058 * var(--u));
+    font-size: calc(16 * var(--u));
+    line-height: calc(24.058 * var(--u));
+  }
+  .hero-cta img,
+  .hero-cta svg {
+    width: calc(18 * var(--u));
+    height: calc(18 * var(--u));
+  }
+
+  /* Lead form (Figma "Form": 660.688 wide, 44/50 padding) */
+  .hero .lf {
+    padding: calc(44 * var(--u)) calc(50 * var(--u));
+    border-radius: calc(31.931 * var(--u));
+    background-color: rgba(0, 0, 0, 0.01);
+    box-shadow: 0 calc(26.428 * var(--u)) calc(88.092 * var(--u)) rgba(0, 0, 0, 0.6);
+  }
+  .hero .lf-title {
+    font-size: calc(24 * var(--u));
+  }
+  .hero .lf-sub {
+    margin-top: calc(6 * var(--u));
+    font-size: calc(14 * var(--u));
+    line-height: calc(19 * var(--u));
+  }
+  .hero .lf-fields {
+    margin-top: calc(40 * var(--u));
+    column-gap: calc(35 * var(--u));
+    row-gap: calc(14 * var(--u));
+  }
+  .hero .lf-label {
+    margin-bottom: calc(6.6 * var(--u));
+    font-size: calc(14 * var(--u));
+    line-height: calc(19 * var(--u));
+  }
+  .hero .lf-input {
+    height: calc(46 * var(--u));
+    padding: 0 calc(19 * var(--u));
+    border-radius: calc(8 * var(--u));
+    font-size: calc(12 * var(--u));
+  }
+  .hero .lf-pad {
+    padding-left: calc(23 * var(--u));
+  }
+  .hero .lf-textarea {
+    height: calc(82 * var(--u));
+    padding: calc(15 * var(--u)) calc(36 * var(--u)) calc(15 * var(--u)) calc(23 * var(--u));
+  }
+  .hero .lf-submit {
+    margin-top: calc(26 * var(--u));
+    height: calc(63.867 * var(--u));
+    border-radius: calc(9 * var(--u));
+    font-size: calc(18 * var(--u));
+  }
+  .hero .lf-note {
+    margin-top: calc(14 * var(--u));
+    font-size: calc(12 * var(--u));
+    line-height: normal;
+    letter-spacing: calc(0.33 * var(--u));
+  }
 }
 
 .marquee-track {
@@ -53,11 +253,71 @@ body {
   }
 }
 
+/* Project approach: at lg+ everything scales from the 1920px Figma frame (--u = 1 design px). */
+@media (min-width: 1024px) {
+  .pa {
+    --u: min(0.0520833vw, 1px);
+  }
+  .pa-inner {
+    padding: calc(80 * var(--u));
+  }
+  .pa-title {
+    font-size: calc(66 * var(--u));
+    line-height: calc(73.333 * var(--u));
+  }
+  .pa-sub {
+    margin-top: calc(16 * var(--u));
+    max-width: calc(1652 * var(--u));
+    font-size: calc(24 * var(--u));
+    line-height: calc(34 * var(--u));
+  }
+  .pa-list {
+    margin-top: calc(50 * var(--u));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: calc(27 * var(--u));
+    row-gap: 0;
+  }
+  .pa-item {
+    gap: calc(52 * var(--u));
+  }
+  .pa-line {
+    display: block;
+    left: calc(100 * var(--u));
+    top: calc(47.67 * var(--u));
+    width: calc(100% - 60 * var(--u));
+  }
+  .pa-icon {
+    width: calc(100 * var(--u));
+    height: calc(92 * var(--u));
+    border-radius: calc(18 * var(--u));
+  }
+  .pa-icon svg {
+    width: calc(40 * var(--u));
+    height: calc(40 * var(--u));
+  }
+  .pa-text {
+    gap: calc(12 * var(--u));
+  }
+  .pa-num {
+    font-size: calc(26 * var(--u));
+    line-height: calc(21.333 * var(--u));
+  }
+  .pa-h {
+    font-size: calc(20 * var(--u));
+    line-height: calc(24 * var(--u));
+  }
+  .pa-p {
+    max-width: calc(257 * var(--u));
+    font-size: calc(18 * var(--u));
+    line-height: calc(22.667 * var(--u));
+  }
+}
+
 /* "Why Mekark": at lg+ everything scales from the 1920x865 Figma frame (--u = 1 design px). */
 @media (min-width: 1024px) {
   .why {
     --u: min(0.0520833vw, 1px);
-    height: calc(865 * var(--u));
+    height: calc(885 * var(--u));
   }
   .why-panel {
     width: calc(916 * var(--u));
@@ -116,8 +376,8 @@ body {
   }
 }
 
-/* CTA: stacked + fluid below 1440px; at 1440+ everything scales from the 1920px Figma frame (--u = 1 design px). */
-@media (min-width: 1440px) {
+/* CTA: stacked + fluid below 1024px; at lg+ everything scales from the 1920px Figma frame (--u = 1 design px). */
+@media (min-width: 1024px) {
   .cta {
     --u: min(0.0520833vw, 1px);
   }
@@ -152,6 +412,7 @@ body {
   }
   .cta-points li {
     gap: calc(16 * var(--u));
+    font-size: calc(20 * var(--u));
   }
   .cta-tick {
     width: calc(37.33 * var(--u));
@@ -233,7 +494,7 @@ body {
     font-size: calc(10.67 * var(--u));
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1024px) {
   .cta-form {
     max-width: none;
   }

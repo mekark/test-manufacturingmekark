@@ -15,9 +15,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Turnkey Factory Construction in India | Mekark",
+  title: "Turnkey Manufacturing Plant Construction Company – EPC manufacturing plant contractor",
   description:
-    "One contract for your entire plant. End-to-end turnkey factory construction with integrated design, fabrication and construction. Request your project blueprint.",
+    "Leading Turnkey Manufacturing Plant construction EPC & Turnkey manufacturing facility construction Company – manufacturing unit construction Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Turnkey manufacturing building contractor & Turnkey manufacturing plant construction, manufacturing plant epc contractor, manufacturing building contractor, manufacturing unit construction Company",
 };
 
 export const viewport: Viewport = {

@@ -143,7 +143,7 @@ export default function Cta() {
                 href="https://wa.me/919790924754"
                 title="WhatsApp Us Now"
                 titleClass="cta-wa-title text-sm font-bold leading-6 sm:text-[26px] sm:leading-normal"
-                icon={<Image src="/hero/whatsapp.png" alt="" width={39} height={39} className="cta-wa size-[30px] sm:size-[39px]" />}
+                icon={<Image src="/hero/whatsapp.webp" alt="" width={39} height={39} className="cta-wa size-[30px] sm:size-[39px]" />}
               />
             </div>
           </div>
