@@ -410,9 +410,13 @@ body {
     row-gap: calc(18.67 * var(--u));
     font-size: calc(20 * var(--u));
   }
+  .cta-points {
+    grid-template-columns: auto auto;
+  }
   .cta-points li {
     gap: calc(16 * var(--u));
     font-size: calc(20 * var(--u));
+    white-space: nowrap;
   }
   .cta-tick {
     width: calc(37.33 * var(--u));
