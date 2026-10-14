@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
+import Footer from "./components/Footer";
 import FloatingActions from "./components/FloatingActions";
 import DeferredGoogleTagManager from "./components/DeferredGoogleTagManager";
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           />
         </noscript>
         {children}
+        <Footer />
         <FloatingActions />
         <DeferredGoogleTagManager gtmId={GTM_ID} />
       </body>
