@@ -1,6 +1,6 @@
 "use client";
 
-import { namePattern, phonePattern } from "./formValidation";
+import { emailPattern, locationPattern, namePattern, phonePattern } from "./formValidation";
 import { useEnquirySubmit } from "./useEnquirySubmit";
 import Image from "next/image";
 
@@ -164,14 +164,14 @@ export default function Cta() {
               <Field id="cta-name" text="Full Name*">
                 <input id="cta-name" name="name" required autoComplete="name" {...namePattern} placeholder="Enter Your name" className={field} />
               </Field>
-              <Field id="cta-location" text="Project Location">
-                <input id="cta-location" name="location" autoComplete="address-level2" {...namePattern} placeholder="Enter project location" className={field} />
+              <Field id="cta-location" text="Project Location*">
+                <input id="cta-location" name="location" required autoComplete="address-level2" {...locationPattern} placeholder="Enter project location" className={field} />
               </Field>
               <Field id="cta-phone" text="Mobile Number*">
                 <input id="cta-phone" name="phone" type="tel" inputMode="tel" required autoComplete="tel" {...phonePattern} placeholder="Mobile Number*" className={field} />
               </Field>
-              <Field id="cta-email" text="Email Address">
-                <input id="cta-email" name="email" type="email" autoComplete="email" placeholder="Enter Email Address" className={field} />
+              <Field id="cta-email" text="Email Address*">
+                <input id="cta-email" name="email" type="email" required autoComplete="email" {...emailPattern} placeholder="Enter Email Address" className={field} />
               </Field>
               <Field id="cta-industry" text="Industry Type*">
                 <input id="cta-industry" name="industry" required placeholder="Enter your Industry type" className={field} />

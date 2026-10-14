@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { namePattern, phonePattern } from "./formValidation";
+import { emailPattern, locationPattern, namePattern, phonePattern } from "./formValidation";
 import { useEnquirySubmit } from "./useEnquirySubmit";
 
 const field =
@@ -71,14 +71,14 @@ export default function LeadForm() {
         <Field id="name" text="Full Name*">
           <input id="name" name="name" required autoComplete="name" {...namePattern} placeholder={md ? "Your name" : "Enter Your name"} className={field} />
         </Field>
-        <Field id="location" text="Project Location">
-          <input id="location" name="location" autoComplete="address-level2" {...namePattern} placeholder="Enter Project Location" className={`${field} lf-pad`} />
+        <Field id="location" text="Project Location*">
+          <input id="location" name="location" required autoComplete="address-level2" {...locationPattern} placeholder="Enter Project Location" className={`${field} lf-pad`} />
         </Field>
         <Field id="phone" text="Mobile Number*">
           <input id="phone" name="phone" type="tel" inputMode="tel" required autoComplete="tel" {...phonePattern} placeholder={md ? "+91 98765 43210" : "Mobile Number*"} className={field} />
         </Field>
-        <Field id="email" text="Email Address">
-          <input id="email" name="email" type="email" autoComplete="email" placeholder={md ? "abcd@gmail.com" : "Enter Email Address"} className={field} />
+        <Field id="email" text="Email Address*">
+          <input id="email" name="email" type="email" required autoComplete="email" {...emailPattern} placeholder={md ? "abcd@gmail.com" : "Enter Email Address"} className={field} />
         </Field>
         <Field id="industry" text="Industry Type*">
           <input id="industry" name="industry" required placeholder={md ? "Enter Industry type" : "Enter your Industry type"} className={`${field} lf-pad`} />
