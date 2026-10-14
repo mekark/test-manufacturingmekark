@@ -89,10 +89,10 @@ export default function Hero() {
           <div className="hero-copy hidden flex-col gap-4 lg:flex">
             <h1 className="hero-h1 flex flex-col items-start gap-[14px] text-[50px] font-bold leading-[58px]">
               <span>Manufacturing Plant. Design to Delivery</span>
-              {/* Figma: 592x59 red box; the asterisk is a separate 30px glyph at x=565 */}
+              {/* Red box runs through "150 days"; the asterisk is a smaller superscript glyph at the end */}
               <span className="hero-h1-box relative w-fit bg-[#ed1d23] px-[5px] text-[48px] leading-[56px]">
                 Construction & Handover - 150 days
-                <span className="hero-h1-star absolute left-[565px] top-0 text-[30px] font-normal">*</span>
+                <span className="hero-h1-star relative -top-3 ml-0.5 text-[30px] font-normal leading-none">*</span>
               </span>
             </h1>
             <p className="hero-sub max-w-[879px] text-[22px] leading-7 text-[#a9a9a9]">

@@ -94,20 +94,20 @@ body {
     line-height: calc(58 * var(--u));
     white-space: nowrap;
   }
-  /* 592x59 box; text centre sits ~27px from the top */
+  /* red box hugs the full line, ending just after the asterisk */
   .hero-h1-box {
-    width: calc(592 * var(--u));
+    width: fit-content;
     height: calc(59 * var(--u));
-    padding: 0 0 0 calc(5 * var(--u));
+    padding: 0 calc(8 * var(--u)) 0 calc(5 * var(--u));
     font-size: calc(48 * var(--u));
     line-height: calc(54.66 * var(--u));
     white-space: nowrap;
   }
   .hero-h1-star {
-    left: calc(565 * var(--u));
-    top: calc(-2 * var(--u));
+    top: calc(-14 * var(--u));
+    margin-left: calc(2 * var(--u));
     font-size: calc(30 * var(--u));
-    line-height: calc(58 * var(--u));
+    line-height: 1;
   }
   .hero-sub {
     max-width: none;
