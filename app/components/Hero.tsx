@@ -29,7 +29,7 @@ const STATS = [
   { value: "300", accent: "+", label: "Projects" },
   { value: "18", accent: "+", label: "Years Experience" },
   { value: "40,000 ", accent: "MT", label: "Annual Production" },
-  { value: "175", accent: "+", label: "Engineering Team" },
+  { value: "250", accent: "+", label: "Engineering Team" },
 ];
 
 export default function Hero() {
