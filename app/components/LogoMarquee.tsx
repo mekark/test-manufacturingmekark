@@ -1,33 +1,25 @@
-import Image from "next/image";
-
+// `i` is the tile position in /hero/logos.webp (18 tiles). Removed tiles (9, 10) stay in the sprite but are skipped.
 const CLIENTS = [
-  "VWU",
-  "Caterpillar",
-  "Voltas",
-  "TVS",
-  "Tata Electronics",
-  "Schwing Stetter",
-  "SRF",
-  "Saveetha",
-  "Sarvam",
-  "Sanmar",
-  "Sanmar Group",
-  "Reliance",
-  "Orbittal",
-  "NSI",
-  "MRF",
-  "L&T",
-  "LAF",
-  "Komatsu",
+  { name: "VWU", i: 0 },
+  { name: "Caterpillar", i: 1 },
+  { name: "Voltas", i: 2 },
+  { name: "TVS", i: 3 },
+  { name: "Tata Electronics", i: 4 },
+  { name: "Schwing Stetter", i: 5 },
+  { name: "SRF", i: 6 },
+  { name: "Saveetha", i: 7 },
+  { name: "Sarvam", i: 8 },
+  { name: "Reliance", i: 11 },
+  { name: "Orbittal", i: 12 },
+  { name: "NSI", i: 13 },
+  { name: "MRF", i: 14 },
+  { name: "L&T", i: 15 },
+  { name: "LAF", i: 16 },
+  { name: "Komatsu", i: 17 },
 ];
 
-// Mobile shows four tiles (Figma): L&T, Caterpillar, TVS, Tata.
-const MOBILE_LOGOS = [
-  { name: "L&T", src: "/hero/logo-lt.webp", w: 64, h: 35 },
-  { name: "Caterpillar", src: "/hero/logo-cat.webp", w: 48, h: 48 },
-  { name: "TVS", src: "/hero/logo-tvs.webp", w: 52, h: 53 },
-  { name: "Tata", src: "/hero/logo-tata.webp", w: 32, h: 32 },
-];
+// Phones show four static tiles (Figma): L&T, Caterpillar, TVS, Tata, picked from the same sprite via CSS order.
+const MOBILE_ORDER: Record<string, number> = { "L&T": 0, Caterpillar: 1, TVS: 2, "Tata Electronics": 3 };
 
 export default function LogoMarquee() {
   return (
@@ -35,27 +27,23 @@ export default function LogoMarquee() {
       <p className="hero-trust-label mb-4 text-[14px] font-semibold uppercase leading-5 text-[#ed1d23] sm:text-[#fa7783] sm:mb-[31px] sm:text-[14px]">
         Trusted Across India
       </p>
-      <div className="flex flex-nowrap gap-x-3 sm:hidden" aria-label={`Trusted by ${MOBILE_LOGOS.map((l) => l.name).join(", ")}`} role="img">
-        {MOBILE_LOGOS.map((logo) => (
-          <span key={logo.name} aria-hidden="true" className="flex h-10 w-16 min-w-0 shrink items-center justify-center overflow-hidden rounded-md bg-[#f9f6f7]">
-            <Image src={logo.src} alt="" width={logo.w} height={logo.h} className="max-w-none shrink-0" />
-          </span>
-        ))}
-      </div>
       <div
-        className="hidden overflow-hidden sm:block"
+        className="overflow-hidden"
         role="img"
-        aria-label={`Trusted by ${CLIENTS.join(", ")}`}
+        aria-label={`Trusted by ${CLIENTS.map((c) => c.name).join(", ")}`}
       >
         <div className="marquee-track" aria-hidden="true">
           {[0, 1].flatMap((copy) =>
-            CLIENTS.map((name, i) => (
-              <span
-                key={`${copy}-${name}`}
-                className="logo-tile"
-                style={{ "--i": i } as React.CSSProperties}
-              />
-            )),
+            CLIENTS.map(({ name, i }) => {
+              const m = copy === 0 ? MOBILE_ORDER[name] : undefined;
+              return (
+                <span
+                  key={`${copy}-${name}`}
+                  className={`logo-tile ${m === undefined ? "max-sm:hidden" : "max-sm:[order:var(--o)]"}`}
+                  style={{ "--i": i, "--o": m } as React.CSSProperties}
+                />
+              );
+            }),
           )}
         </div>
       </div>

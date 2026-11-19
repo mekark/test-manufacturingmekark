@@ -16,6 +16,30 @@ body {
   overflow-x: clip;
 }
 
+/* Native anchor scrolling for "Get Free Quote" CTAs. The fixed 56px mobile nav must not cover the form title. */
+html {
+  scroll-padding-top: 72px;
+}
+
+/* Smooth only while an in-page anchor (#quote, #contact) is the target. Always-on smooth scrolling makes the browser
+   animate from the top when restoring the scroll position after a reload. */
+html:has(:target) {
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  html:has(:target) {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -33,6 +57,19 @@ body {
   background-size: calc(1620 * var(--u, 1px)) calc(40 * var(--u, 1px));
   background-position-x: calc(var(--i) * -90 * var(--u, 1px));
   background-repeat: no-repeat;
+}
+
+/* Phone/tablet hero art behind the heading. The <img> is switched off at lg via <picture>, so desktop never downloads it. */
+@media (max-width: 1023px) {
+  .hero-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    background:
+      linear-gradient(to bottom, #060606, transparent) top / 100% 135px no-repeat,
+      linear-gradient(to bottom, transparent, #1e1e1e) bottom / 100% 47px no-repeat;
+  }
 }
 
 /* Hero: at lg+ everything scales from the 1920x1018 Figma frame (--u = 1 design px). */
@@ -241,6 +278,20 @@ body {
   will-change: transform;
 }
 
+/* Phones: four static tiles instead of the scrolling strip */
+@media (max-width: 639px) {
+  /* Four tiles spread across the full card width; tile size shrinks on narrow phones so they never overflow. */
+  .marquee-track {
+    --u: min(0.8px, calc((100vw - 100px) / 360));
+    width: 100%;
+    justify-content: space-between;
+    animation: none;
+  }
+  .logo-tile {
+    margin-right: 0;
+  }
+}
+
 @keyframes marquee {
   to {
     transform: translate3d(-50%, 0, 0);
@@ -386,7 +437,8 @@ body {
   }
   .cta-grid {
     grid-template-columns: calc(887 * var(--u)) calc(600 * var(--u));
-    gap: calc(69 * var(--u));
+    column-gap: calc(69 * var(--u));
+    row-gap: 0;
   }
   .cta-chip {
     padding: calc(9.33 * var(--u)) calc(20 * var(--u));
@@ -394,9 +446,9 @@ body {
     line-height: calc(26 * var(--u));
   }
   .cta-title {
-    margin-top: calc(25 * var(--u));
-    font-size: calc(79.467 * var(--u));
-    line-height: calc(81.6 * var(--u));
+    margin-top: 0;
+    font-size: calc(68 * var(--u));
+    line-height: calc(66 * var(--u));
   }
   .cta-sub {
     margin-top: calc(25 * var(--u));
@@ -405,60 +457,59 @@ body {
     line-height: calc(37.33 * var(--u));
   }
   .cta-points {
-    margin-top: calc(37 * var(--u));
-    column-gap: calc(32 * var(--u));
-    row-gap: calc(18.67 * var(--u));
-    font-size: calc(20 * var(--u));
-  }
-  .cta-points {
-    grid-template-columns: auto auto;
+    margin-top: calc(28 * var(--u));
+    column-gap: calc(16 * var(--u));
+    row-gap: calc(16 * var(--u));
   }
   .cta-points li {
-    gap: calc(16 * var(--u));
-    font-size: calc(20 * var(--u));
+    gap: calc(12 * var(--u));
+    min-height: calc(52 * var(--u));
+    padding: 0 calc(20 * var(--u));
+    border-radius: calc(16 * var(--u));
+    font-size: calc(16 * var(--u));
     white-space: nowrap;
   }
   .cta-tick {
-    width: calc(37.33 * var(--u));
-    height: calc(37.33 * var(--u));
-    font-size: calc(17.33 * var(--u));
+    width: calc(26 * var(--u));
+    height: calc(26 * var(--u));
+    font-size: calc(13 * var(--u));
   }
   .cta-cards {
-    margin-top: calc(55 * var(--u));
-    max-width: calc(693 * var(--u));
-    gap: calc(21 * var(--u));
+    margin-top: calc(36 * var(--u));
+    max-width: calc(693.333 * var(--u));
+    gap: calc(20 * var(--u));
   }
   .cta-card {
-    height: calc(120 * var(--u));
-    gap: calc(21 * var(--u));
-    padding: 0 calc(27 * var(--u));
-    border-radius: calc(29 * var(--u));
+    height: calc(84 * var(--u));
+    gap: calc(16 * var(--u));
+    padding: 0 calc(20 * var(--u));
+    border-radius: calc(22 * var(--u));
   }
   .cta-card-icon {
-    width: calc(64 * var(--u));
-    height: calc(64 * var(--u));
-    border-radius: calc(24 * var(--u));
+    width: calc(48 * var(--u));
+    height: calc(48 * var(--u));
+    border-radius: calc(16 * var(--u));
   }
   .cta-card-icon img {
-    width: calc(27 * var(--u));
+    width: calc(20 * var(--u));
     height: auto;
   }
   .cta-card-icon img.cta-wa {
-    width: calc(39 * var(--u));
+    width: calc(30 * var(--u));
   }
   .cta-eyebrow {
-    font-size: calc(16 * var(--u));
-    line-height: calc(21.33 * var(--u));
+    font-size: calc(13 * var(--u));
+    line-height: calc(18 * var(--u));
   }
   .cta-card-title {
-    font-size: calc(21.33 * var(--u));
-    line-height: calc(32 * var(--u));
+    font-size: calc(17 * var(--u));
+    line-height: calc(24 * var(--u));
   }
   .cta-card-title.cta-wa-title {
-    font-size: calc(26 * var(--u));
+    font-size: calc(19 * var(--u));
   }
-  .cta-card > img {
-    width: calc(27 * var(--u));
+  .cta-card-arrow {
+    width: calc(20 * var(--u));
   }
   .cta-form {
     padding: calc(42 * var(--u)) calc(46 * var(--u));

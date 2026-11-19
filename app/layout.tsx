@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
 import Footer from "./components/Footer";
+import MobileStickyBar from "./components/MobileStickyBar";
 import FloatingActions from "./components/FloatingActions";
 import DeferredGoogleTagManager from "./components/DeferredGoogleTagManager";
 import "./globals.css";
@@ -28,7 +29,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${manrope.variable} antialiased`}>
-      <body>
+      <body className="pb-16 md:pb-0">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
         {children}
         <Footer />
+        <MobileStickyBar />
         <FloatingActions />
         <DeferredGoogleTagManager gtmId={GTM_ID} />
       </body>

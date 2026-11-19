@@ -100,14 +100,14 @@ const TABS: Tab[] = [
   },
 ];
 
-export default function FaqTabs({ media }: { media?: ReactNode }) {
+export default function FaqTabs() {
   const [tab, setTab] = useState(0);
   const [open, setOpen] = useState<number | null>(0);
   const active = TABS[tab];
 
   return (
     <>
-      <div role="tablist" aria-label="FAQ categories" className="grid max-w-[320px] grid-cols-2 gap-y-2.5 sm:flex sm:max-w-none sm:flex-wrap sm:gap-x-5 sm:gap-y-3">
+      <div role="tablist" aria-label="FAQ categories" className="grid max-w-[320px] grid-cols-2 max-lg:order-1 gap-y-2.5 sm:flex sm:max-w-none sm:flex-wrap sm:gap-x-5 sm:gap-y-3">
         {TABS.map((t, i) => {
           const on = i === tab;
           return (
@@ -132,9 +132,7 @@ export default function FaqTabs({ media }: { media?: ReactNode }) {
         })}
       </div>
 
-      {media && <div className="mt-5 lg:hidden">{media}</div>}
-
-      <div id="faq-panel" role="tabpanel" aria-labelledby={`faq-tab-${active.id}`} className="mt-6 lg:mt-6 lg:max-w-[949px]">
+      <div id="faq-panel" role="tabpanel" aria-labelledby={`faq-tab-${active.id}`} className="mt-6 max-lg:order-3 lg:max-w-[949px]">
         {active.faqs.map((f, i) => {
           const isOpen = open === i;
           return (

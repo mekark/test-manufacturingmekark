@@ -1,24 +1,14 @@
 import Image from "next/image";
 
-type Tile = { src: string; alt: string; sizes: string };
-
-// The six Figma photos, shared by mobile, tablet and desktop. `round` is the desktop-only outer-corner rounding.
+// The six Figma photos, one grid for every breakpoint. `round` is the desktop-only outer-corner rounding.
 const DESKTOP = [
-  { src: "/hero/gd1.webp", alt: "Modern industrial building with a louvred facade and loading yard", round: "rounded-tl-[32px]" },
-  { src: "/hero/gd2.webp", alt: "Large white warehouse with loading docks", round: "rounded-tr-[32px]" },
-  { src: "/hero/gd3.webp", alt: "Solo Paints industrial warehouse with a glazed entrance", round: "rounded-bl-[32px]" },
-  { src: "/hero/gd4.webp", alt: "Blue steel warehouse on an industrial estate", round: "rounded-br-[32px]" },
-  { src: "/hero/gd5.webp", alt: "Aerial view of a white factory building with a long roof", round: "rounded-bl-[32px]" },
-  { src: "/hero/gd6.webp", alt: "Industrial shed with loading docks and a parked truck", round: "rounded-br-[32px]" },
+  { src: "/hero/gd1.webp", alt: "Modern industrial building with a louvred facade and loading yard", round: "lg:rounded-tl-[32px]" },
+  { src: "/hero/gd2.webp", alt: "Large white warehouse with loading docks", round: "lg:rounded-tr-[32px]" },
+  { src: "/hero/gd3.webp", alt: "Solo Paints industrial warehouse with a glazed entrance", round: "lg:rounded-bl-[32px]" },
+  { src: "/hero/gd4.webp", alt: "Blue steel warehouse on an industrial estate", round: "lg:rounded-br-[32px]" },
+  { src: "/hero/gd5-green.webp", alt: "Aerial view of a green and cream PEB factory with loading docks and a truck", round: "lg:rounded-bl-[32px]" },
+  { src: "/hero/gd6-new.webp", alt: "Blue and white steel warehouse with loading docks, a delivery truck and a landscaped car park", round: "lg:rounded-br-[32px]" },
 ];
-
-function Photo({ tile, className, sizes }: { tile: { src: string; alt: string }; className: string; sizes: string }) {
-  return (
-    <div className={`relative overflow-hidden bg-[#d9d9d9] ${className}`}>
-      <Image src={tile.src} alt={tile.alt} fill sizes={sizes} quality={75} className="object-cover" />
-    </div>
-  );
-}
 
 export default function ProjectsGallery() {
   return (
@@ -32,29 +22,13 @@ export default function ProjectsGallery() {
                 Projects <span className="text-[#ed1d23]">Gallery</span>
               </h2>
             </div>
-            <p className="max-w-[300px] text-sm font-normal leading-normal text-[#64748b] sm:max-w-none sm:text-base sm:font-medium sm:leading-7 md:text-[20px] xl:text-[24px] xl:leading-9">
-              <span className="sm:hidden">Our Completed Projects Across</span>
-              <span className="hidden sm:inline">Our Completed Projects Across India.</span>
-            </p>
           </div>
 
-          {/* Figma mobile (9791:1469): single column, six full-width 180px tiles, 16px gap */}
-          <div className="flex flex-col gap-4 sm:hidden">
-            {DESKTOP.map((tile) => (
-              <Photo key={tile.src} tile={tile} sizes="100vw" className="h-[180px] w-full" />
-            ))}
-          </div>
-
-          <div className="hidden grid-cols-2 gap-3 sm:grid lg:hidden">
-            {DESKTOP.map((tile) => (
-              <Photo key={tile.src} tile={tile} sizes="50vw" className="aspect-[4/3]" />
-            ))}
-          </div>
-
-          <div className="mt-[52px] hidden grid-cols-2 gap-[25px] lg:grid">
+          {/* One grid: 1 column (180px tiles) on phones, 2 columns from sm, Figma 867:488 tiles at lg */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3 lg:mt-[52px] lg:gap-[25px]">
             {DESKTOP.map((t) => (
-              <div key={t.src} className={`relative aspect-[867/488] overflow-hidden bg-[#d9d9d9] ${t.round}`}>
-                <Image src={t.src} alt={t.alt} fill sizes="(min-width: 1920px) 868px, 48vw" quality={75} className="object-cover" />
+              <div key={t.src} className={`relative h-[180px] overflow-hidden bg-[#d9d9d9] sm:aspect-[4/3] sm:h-auto lg:aspect-[867/488] ${t.round}`}>
+                <Image src={t.src} alt={t.alt} fill sizes="(min-width: 1920px) 868px, (min-width: 1024px) 48vw, (min-width: 640px) 50vw, 100vw" quality={75} className={`object-cover ${"zoom" in t ? t.zoom : ""}`} />
               </div>
             ))}
           </div>
